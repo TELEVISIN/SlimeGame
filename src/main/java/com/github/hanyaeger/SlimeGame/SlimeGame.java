@@ -1,5 +1,6 @@
 package com.github.hanyaeger.SlimeGame;
 
+import com.github.hanyaeger.SlimeGame.scenes.GameLevel;
 import com.github.hanyaeger.SlimeGame.scenes.StartScreen;
 import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.YaegerGame;
@@ -18,6 +19,7 @@ public class SlimeGame extends YaegerGame{
 
 	@Override
 	public void setupScenes(){
-	    addScene(0, new StartScreen());
+	    addScene(0, new StartScreen(this));
+	    addScene(1, new GameLevel());
 	}
 }
