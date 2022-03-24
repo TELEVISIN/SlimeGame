@@ -12,6 +12,7 @@ public abstract class Room extends RectangleEntity {
     GameLevel gameLevel;
     Crate[] crates;
     Wall[] walls;
+    final String SPRITESHEET = "sprites/Room_tilemap.png";
 
     public Room(Coordinate2D coordinate2D, Crate[] crates, Wall[] walls, float width, float height)
     {
@@ -20,7 +21,12 @@ public abstract class Room extends RectangleEntity {
         this.walls = walls;
     }
 
-    private void buildRoom() {}
+    private void buildRoom() {
+        for (Wall wall : walls)
+        {
+            gameLevel.addEntity();
+        }
+    }
 
     private void setCrates() {}
 
