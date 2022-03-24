@@ -21,8 +21,7 @@ public class StartScreen extends StaticScene {
 
 	@Override
 	public void setupScene() {
-		// TODO Auto-generated method stub
-		
+	    setBackgroundImage("sprites/swordfish.png");
 	}
 
 	@Override
