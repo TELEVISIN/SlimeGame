@@ -10,7 +10,7 @@ import javafx.scene.input.KeyCode;
 
 /*
  * 
- * @author Jasper
+ * @Author: Jasper
  * 
  */
 
@@ -34,19 +34,10 @@ public abstract class Player extends iLifeform implements KeyListener {
 	}
 	
 	public void onPressedKeys(Set<KeyCode> pressedKeys) {
-		if(pressedKeys.contains(KeyCode.LEFT)) {
-			setMotion(3, 270d);
-		} else if (pressedKeys.contains(KeyCode.RIGHT)) {
-			setMotion(3, 90d);
-		} else if (pressedKeys.contains(KeyCode.UP)) {
-			setMotion(3, 180d);
-		} else if (pressedKeys.contains(KeyCode.DOWN)) {
-			setMotion(3, 0d);
-		} else if (pressedKeys.isEmpty()) {
-			setSpeed(0);
-		}		
+				
 	}
 
+	
 	//onCollison
 	//Attack
 	//Move

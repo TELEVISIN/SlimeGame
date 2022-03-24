@@ -15,7 +15,17 @@ public class Paladin extends Player {
 	@Override
 	public void onPressedKeysChange(Set<KeyCode> pressedKeys) {
 		// TODO Auto-generated method stub
-		
+		if(pressedKeys.contains(KeyCode.LEFT)) {
+			setMotion(3, 270d);
+		} else if (pressedKeys.contains(KeyCode.RIGHT)) {
+			setMotion(3, 90d);
+		} else if (pressedKeys.contains(KeyCode.UP)) {
+			setMotion(3, 180d);
+		} else if (pressedKeys.contains(KeyCode.DOWN)) {
+			setMotion(3, 0d);
+		} else if (pressedKeys.isEmpty()) {
+			setSpeed(0);
+		}
 	}
 
 	@Override
