@@ -44,14 +44,12 @@ public abstract class Player extends iLifeform implements KeyListener {
 			setMotion(3, 0d);
 		} else if (pressedKeys.isEmpty()) {
 			setSpeed(0);
-		}
-		
-		//onCollison
-		//Attack
-		//Move
-		//updateHealth
-		//updateExperience
-		
+		}		
 	}
-	
+
+	//onCollison
+	//Attack
+	//Move
+	//updateHealth
+	//updateExperience
 }

@@ -20,6 +20,6 @@ public class SlimeGame extends YaegerGame{
 	@Override
 	public void setupScenes(){
 	    addScene(0, new StartScreen(this));
-	    addScene(1, new GameLevel());
+	    addScene(1, new GameLevel(this));
 	}
 }
