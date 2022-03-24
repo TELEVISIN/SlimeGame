@@ -1,5 +1,7 @@
-package com.github.hanyaeger.SlimeGame.entities.Rooms;
+package com.github.hanyaeger.SlimeGame.entities.rooms;
 
+import com.github.hanyaeger.SlimeGame.entities.obstacles.Crate;
+import com.github.hanyaeger.SlimeGame.entities.obstacles.Wall;
 import com.github.hanyaeger.SlimeGame.scenes.GameLevel;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
