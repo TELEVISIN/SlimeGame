@@ -7,6 +7,7 @@ import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.userinput.KeyListener;
 
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.MouseButton;
 
 /*
  * 
@@ -36,8 +37,14 @@ public abstract class Player extends iLifeform implements KeyListener {
 	public void onPressedKeys(Set<KeyCode> pressedKeys) {
 				
 	}
-
 	
+	public void onMouseButtonPressed(MouseButton button) {
+		// TODO Auto-generated method stub
+	}
+	
+	public void Attack() {
+		
+	}
 	//onCollison
 	//Attack
 	//Move
