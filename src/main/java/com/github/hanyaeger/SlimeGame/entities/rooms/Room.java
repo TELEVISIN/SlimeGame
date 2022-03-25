@@ -1,17 +1,10 @@
 package com.github.hanyaeger.SlimeGame.entities.rooms;
 
 import com.github.hanyaeger.SlimeGame.entities.obstacles.Crate;
-import com.github.hanyaeger.SlimeGame.entities.obstacles.Door;
 import com.github.hanyaeger.SlimeGame.entities.obstacles.Wall;
 import com.github.hanyaeger.SlimeGame.scenes.GameLevel;
 import com.github.hanyaeger.api.Coordinate2D;
-import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.entities.CompositeEntity;
-import com.github.hanyaeger.api.entities.impl.RectangleEntity;
-import com.github.hanyaeger.api.scenes.TileMap;
-import com.github.hanyaeger.api.scenes.TileMapContainer;
-import com.github.hanyaeger.core.entities.EntitySupplier;
-import com.google.inject.Injector;
 
 import java.util.List;
 
