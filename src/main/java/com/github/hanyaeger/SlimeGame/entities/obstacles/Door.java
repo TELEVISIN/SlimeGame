@@ -8,10 +8,7 @@ public class Door extends SpriteEntity {
     public Door(Coordinate2D initialLocation, Size size, String resource) {
         super("sprites/Room_tilemap.png", initialLocation, size, 4, 4);
 
-        if (resource == "0") {
-            setCurrentFrameIndex(0);
-        } else {
-            setCurrentFrameIndex(1);
-        }
+        int index = Integer.parseInt(resource);
+        setCurrentFrameIndex(index);
     }
 }

@@ -14,7 +14,7 @@ public class SlimeGame extends YaegerGame{
 	@Override
 	public void setupGame() {
 	    setGameTitle("Tomb Of The Slime King");
-	    setSize(new Size(1216, 700));
+	    setSize(new Size(1216, 704));
 	}
 
 	@Override
