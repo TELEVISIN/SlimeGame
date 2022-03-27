@@ -28,11 +28,11 @@ public class StartScreen extends StaticScene {
 	public void setupEntities(){
 	    var slimeGameText = new TextEntity(
 	        new Coordinate2D(getWidth() / 2, getHeight() / 4),
-	        "Slime Game"
+	        "Tomb Of The Slime King"
 	    );
 	    slimeGameText.setAnchorPoint(AnchorPoint.CENTER_CENTER);
 	    slimeGameText.setFill(Color.YELLOW);
-	    slimeGameText.setFont(Font.font("Roboto", FontWeight.SEMI_BOLD, 80));
+	    slimeGameText.setFont(Font.font("Lucida Calligraphy", FontWeight.SEMI_BOLD, 80));
 	    addEntity(slimeGameText);
 	    
 	    addEntity(new StartButton(new Coordinate2D(getWidth() / 2, getHeight() / 10 * 6), slimeGame));

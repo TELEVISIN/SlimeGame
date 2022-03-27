@@ -14,7 +14,8 @@ public class StartButton extends Button {
 	public StartButton(Coordinate2D initialLocation, SlimeGame slimeGame) {
 		super(initialLocation, slimeGame, "Play game");
 	    setFill(Color.YELLOW);
-	    setFont(Font.font("Roboto", FontWeight.BOLD, 30));
+	    //setFont(Font.font("Roboto", FontWeight.BOLD, 30));
+		setFont(Font.font("Lucida Calligraphy", FontWeight.BOLD, 30));
 	}
 
 	@Override
