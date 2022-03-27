@@ -28,8 +28,7 @@ public class NormalRoom extends Room{
 //                {13, 15, 15, 15, 15, 15, 15, 15, 15, 14, 15, 15, 15, 15, 15, 15, 15, 15, 16}
 //        };
 
-        int[][] tilemap = createTileMap();
-        return tilemap;
+        return createTileMap();
     }
 
     @Override
@@ -77,10 +76,29 @@ public class NormalRoom extends Room{
                         tilemap[rowNr][columnNr] = 16;
                     }
                 }
-                else
+                //if not corner piece, check wall pieces
+                else if(rowNr == 0 || rowNr == wallAmountY - 1 || columnNr == 0 || columnNr == wallAmountX - 1)
                 {
-                    //if not corner piece, check wall pieces
-                    tilemap[rowNr][columnNr] = 6;
+                    //top wall
+                    if (rowNr == 0)
+                    {
+                        tilemap[rowNr][columnNr] = 2;
+                    }
+                    //bottom wall
+                    else if (rowNr == wallAmountY - 1)
+                    {
+                        tilemap[rowNr][columnNr] = 15;
+                    }
+                    //left wall
+                    else if (columnNr == 0)
+                    {
+                        tilemap[rowNr][columnNr] = 9;
+                    }
+                    //right wall
+                    else
+                    {
+                        tilemap[rowNr][columnNr] = 8;
+                    }
                 }
             }
         }
