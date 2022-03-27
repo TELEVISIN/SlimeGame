@@ -31,78 +31,13 @@ public class NormalRoom extends Room{
         return createTileMap();
     }
 
-    @Override
-    protected int[][] createTileMap()
+    //edit tilemap by adding walls and crates
+    private int[][] EditTileMap(int[][] oldTilemap)
     {
-        //set amount of wall x and y
-        int wallAmountX = (int) (gameLevel.getWidth() / SPRITE_SIZE);
-        int wallAmountY = (int) (gameLevel.getHeight() / SPRITE_SIZE);
+        int[][] newTilemap = oldTilemap;
 
-        //create empty tilemap to be filled later on
-        int[][] tilemap = new int[wallAmountY][wallAmountX];
+        
 
-
-        //loop through row
-        for(int columnNr = 0; columnNr < wallAmountX; columnNr++)
-        {
-            //loop through column
-            for (int rowNr = 0; rowNr < wallAmountY; rowNr++)
-            {
-                //check if corner piece
-                if (rowNr == 0 && columnNr == 0 ||                              //top left corner
-                    rowNr == 0 && columnNr == wallAmountX - 1 ||                //top right corner
-                    rowNr == wallAmountY - 1 && columnNr == 0 ||                //bottom left corner
-                    rowNr == wallAmountY - 1 && columnNr == wallAmountX - 1)    //bottom right corner
-                {
-                    //set corner pieces
-                    if(rowNr == 0 && columnNr == 0)
-                    {
-                        //top left corner
-                        tilemap[rowNr][columnNr] = 1;
-                    }
-                    else if(rowNr == 0 && columnNr == wallAmountX - 1)
-                    {
-                        //top right corner
-                        tilemap[rowNr][columnNr] = 4;
-                    }
-                    else if(rowNr == wallAmountY - 1 && columnNr == 0)
-                    {
-                        //bottom left corner
-                        tilemap[rowNr][columnNr] = 13;
-                    }
-                    else
-                    {
-                        //bottom right corner
-                        tilemap[rowNr][columnNr] = 16;
-                    }
-                }
-                //if not corner piece, check wall pieces
-                else if(rowNr == 0 || rowNr == wallAmountY - 1 || columnNr == 0 || columnNr == wallAmountX - 1)
-                {
-                    //top wall
-                    if (rowNr == 0)
-                    {
-                        tilemap[rowNr][columnNr] = 2;
-                    }
-                    //bottom wall
-                    else if (rowNr == wallAmountY - 1)
-                    {
-                        tilemap[rowNr][columnNr] = 15;
-                    }
-                    //left wall
-                    else if (columnNr == 0)
-                    {
-                        tilemap[rowNr][columnNr] = 9;
-                    }
-                    //right wall
-                    else
-                    {
-                        tilemap[rowNr][columnNr] = 8;
-                    }
-                }
-            }
-        }
-
-        return tilemap;
+        return newTilemap;
     }
 }
