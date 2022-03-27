@@ -1,15 +1,16 @@
 package com.github.hanyaeger.SlimeGame.entities.obstacles;
 
 import com.github.hanyaeger.api.Coordinate2D;
+import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.entities.Collider;
 import com.github.hanyaeger.api.entities.impl.SpriteEntity;
 
 public class Crate extends SpriteEntity implements Collider {
-    final int frameIndex = 7;
+    final int CRATE_SPRITE_INDEX = 6;
 
-    public Crate(String resource, Coordinate2D initialLocation) {
-        super("sprites/Room_tilemap.png", initialLocation, 4, 4);
+    public Crate(Coordinate2D initialLocation, Size size) {
+        super("sprites/Room_tilemap_V2.png", initialLocation, size, 4, 4);
 
-        setCurrentFrameIndex(frameIndex);
+        setCurrentFrameIndex(CRATE_SPRITE_INDEX);
     }
 }

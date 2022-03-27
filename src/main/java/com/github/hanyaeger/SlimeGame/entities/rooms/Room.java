@@ -11,12 +11,19 @@ import java.util.List;
 public abstract class Room extends TileMap {
     final int DOOR_NR = 4;
     final int SPRITE_SIZE = 64;
-    //final int
+
+    int wallAmountX;
+    int wallAmountY;
+
     GameLevel gameLevel;
 
     public Room(GameLevel gameLevel)
     {
         this.gameLevel = gameLevel;
+
+        //set amount of wall x and y
+        wallAmountX = (int) (gameLevel.getWidth() / SPRITE_SIZE);
+        wallAmountY = (int) (gameLevel.getHeight() / SPRITE_SIZE);
 
         createTileMap();
     }
@@ -48,10 +55,6 @@ public abstract class Room extends TileMap {
     //create the base for the TileMap
     protected int[][] createTileMap()
     {
-        //set amount of wall x and y
-        int wallAmountX = (int) (gameLevel.getWidth() / SPRITE_SIZE);
-        int wallAmountY = (int) (gameLevel.getHeight() / SPRITE_SIZE);
-
         //create empty tilemap to be filled later on
         int[][] tilemap = new int[wallAmountY][wallAmountX];
 
@@ -165,8 +168,6 @@ public abstract class Room extends TileMap {
 
         return tilemap;
     }
-
-    private void setDoors() {}
 
     private void spawnEnemies() {}
 }
