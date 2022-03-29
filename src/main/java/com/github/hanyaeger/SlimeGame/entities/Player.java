@@ -41,6 +41,10 @@ public abstract class Player extends iLifeform implements KeyListener {
 	public void Attack() {
 		
 	}
+	
+	public void Block() {
+		
+	}
 	//onCollison
 	//Move
 	//updateHealth

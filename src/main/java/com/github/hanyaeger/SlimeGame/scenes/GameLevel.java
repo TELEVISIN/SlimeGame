@@ -41,7 +41,16 @@ public class GameLevel extends DynamicScene implements TileMapContainer, MouseBu
 	@Override
 	public void onMouseButtonPressed(MouseButton button, Coordinate2D coordinate2d) {
 		// TODO Auto-generated method stub
-		paladin.Attack();
+		
+		//LEFT MOUSE BUTTON for attacking
+		if(button == MouseButton.PRIMARY) {
+			paladin.Attack();
+		} 
+		
+		//RIGHT MOUSE BUTTON for blocking
+		else if (button == MouseButton.SECONDARY) {
+			paladin.Block();
+		}
 	}
 
 	@Override

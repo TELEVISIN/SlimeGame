@@ -59,6 +59,9 @@ public class Paladin extends Player {
 	@Override
 	public void Attack() {
 		System.out.println("Attack!");
-		addEntity(new PaladinAttackSprite(new Coordinate2D(64, 0)));
+	}
+	
+	public void Block() {
+		System.out.println("Block!");
 	}
 }
