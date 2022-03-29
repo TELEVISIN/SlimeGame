@@ -7,6 +7,7 @@ import com.github.hanyaeger.SlimeGame.scenes.GameLevel;
 import com.github.hanyaeger.api.scenes.TileMap;
 
 import java.util.List;
+import java.util.Random;
 
 public abstract class Room extends TileMap {
     final int DOOR_NR = 4;
@@ -16,6 +17,15 @@ public abstract class Room extends TileMap {
     int wallAmountY;
 
     GameLevel gameLevel;
+
+    //random floor tiles variables
+    int floorTileVariantsStartIndex = 16;
+    int floorTileVariantsEndIndex = 31;
+    int floorTileVariantIndex;
+    Random random = new Random();
+    int floorRandomChanceMaximum = 10;
+    int floorRandomChance;
+
 
     public Room(GameLevel gameLevel)
     {
@@ -47,6 +57,23 @@ public abstract class Room extends TileMap {
         addEntity(14, Wall.class, "13" );
         addEntity(15, Wall.class, "14" );
         addEntity(16, Door.class, "15" );
+        //floor tile variants
+        addEntity(17, Wall.class, "16" );
+        addEntity(18, Wall.class, "17" );
+        addEntity(19, Wall.class, "18" );
+        addEntity(20, Wall.class, "19" );
+        addEntity(21, Wall.class, "20" );
+        addEntity(22, Wall.class, "21" );
+        addEntity(23, Wall.class, "22" );
+        addEntity(24, Wall.class, "23" );
+        addEntity(25, Wall.class, "24" );
+        addEntity(26, Wall.class, "25" );
+        addEntity(27, Wall.class, "26" );
+        addEntity(28, Wall.class, "27" );
+        addEntity(29, Wall.class, "28" );
+        addEntity(30, Wall.class, "29" );
+        addEntity(31, Wall.class, "30" );
+        addEntity(32, Wall.class, "31" );
 
     }
 
@@ -161,7 +188,19 @@ public abstract class Room extends TileMap {
                 //every tile else is floor tile
                 else
                 {
-                    tilemap[rowNr][columnNr] = 6;
+                    //random tile chance
+                    floorRandomChance = random.nextInt(100);
+
+                    if (floorRandomChance < floorRandomChanceMaximum) {
+                        //random floor tile
+                        floorTileVariantIndex = random.nextInt(floorTileVariantsEndIndex - floorTileVariantsStartIndex) + floorTileVariantsStartIndex;
+                        tilemap[rowNr][columnNr] = floorTileVariantIndex + 1;
+                    }
+                    else
+                    {
+                        //normal floor tile
+                        tilemap[rowNr][columnNr] = 6;
+                    }
                 }
             }
         }
