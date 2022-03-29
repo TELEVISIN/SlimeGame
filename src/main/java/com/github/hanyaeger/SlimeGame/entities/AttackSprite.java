@@ -4,12 +4,14 @@ import java.util.Set;
 
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
+import com.github.hanyaeger.api.entities.Collided;
+import com.github.hanyaeger.api.entities.Collider;
 import com.github.hanyaeger.api.entities.impl.DynamicSpriteEntity;
 import com.github.hanyaeger.api.userinput.MouseButtonPressedListener;
 
 import javafx.scene.input.MouseButton;
 
-public class AttackSprite extends DynamicSpriteEntity implements MouseButtonPressedListener {
+public class AttackSprite extends DynamicSpriteEntity implements MouseButtonPressedListener, Collider {
 
 	public AttackSprite(Coordinate2D initialLocation) {
 		super("sprites/LifeformSpriteSheet.png", initialLocation, new Size(64, 64), 8, 8);
