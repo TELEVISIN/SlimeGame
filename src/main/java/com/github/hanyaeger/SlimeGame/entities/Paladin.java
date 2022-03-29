@@ -10,6 +10,8 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 
 public class Paladin extends Player {
+	
+	
 	public Paladin(Coordinate2D coordinate2d, SlimeGame slimeGame, int health, double speed, double attackPower, double attackSpeed) {
 		super(coordinate2d, slimeGame, health, speed, attackPower, attackSpeed);
 	}
@@ -54,7 +56,6 @@ public class Paladin extends Player {
 	protected void setupEntities() {
 		// TODO Auto-generated method stub
 		addEntity(new PaladinSprite(new Coordinate2D(0, 0)));
-		
 	}
 	
 	@Override

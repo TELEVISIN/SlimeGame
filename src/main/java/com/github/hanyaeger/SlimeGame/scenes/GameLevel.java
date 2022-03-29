@@ -3,6 +3,7 @@ package com.github.hanyaeger.SlimeGame.scenes;
 import com.github.hanyaeger.SlimeGame.SlimeGame;
 import com.github.hanyaeger.SlimeGame.entities.AttackSprite;
 import com.github.hanyaeger.SlimeGame.entities.Paladin;
+import com.github.hanyaeger.SlimeGame.entities.PaladinSprite;
 import com.github.hanyaeger.SlimeGame.entities.rooms.NormalRoom;
 import com.github.hanyaeger.SlimeGame.entities.rooms.Room;
 import com.github.hanyaeger.api.Coordinate2D;
@@ -16,6 +17,7 @@ public class GameLevel extends DynamicScene implements TileMapContainer, MouseBu
 	
 	private SlimeGame slimeGame;
 	private Paladin paladin;
+	private AttackSprite attackSprite;
 	
 	public GameLevel(SlimeGame slimeGame) {
 		this.slimeGame = slimeGame;
@@ -30,12 +32,14 @@ public class GameLevel extends DynamicScene implements TileMapContainer, MouseBu
 				1, 
 				10, 
 				0.7);
+		attackSprite = new AttackSprite(new Coordinate2D(10000, 10000));
 	}
 
 	@Override
 	public void setupEntities() {
 		// TODO Auto-generated method stub
 		addEntity(paladin);
+		addEntity(attackSprite);
 	}
 	
 	@Override
@@ -45,7 +49,9 @@ public class GameLevel extends DynamicScene implements TileMapContainer, MouseBu
 		//LEFT MOUSE BUTTON for attacking
 		if(button == MouseButton.PRIMARY) {
 			paladin.Attack();
-			addEntity(new AttackSprite(paladin.getAnchorLocation()));
+			attackSprite.appear(paladin.getAnchorLocation());
+		
+			//attackSprite.disappear();
 			
 		} 
 		

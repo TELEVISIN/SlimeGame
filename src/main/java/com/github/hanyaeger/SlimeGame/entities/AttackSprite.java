@@ -41,4 +41,12 @@ public class AttackSprite extends DynamicSpriteEntity implements MouseButtonPres
 			setCurrentFrameIndex(11);
 		}
 	}
+	
+	public void appear(Coordinate2D coordinate2d) {
+		setAnchorLocation(coordinate2d);
+	}
+	
+	public void disappear() {
+		setAnchorLocation(new Coordinate2D(10000, 10000));
+	}
 }
