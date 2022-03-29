@@ -7,10 +7,14 @@ import com.github.hanyaeger.SlimeGame.entities.rooms.Room;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.scenes.DynamicScene;
 import com.github.hanyaeger.api.scenes.TileMapContainer;
+import com.github.hanyaeger.api.userinput.MouseButtonPressedListener;
 
-public class GameLevel extends DynamicScene implements TileMapContainer {
+import javafx.scene.input.MouseButton;
+
+public class GameLevel extends DynamicScene implements TileMapContainer, MouseButtonPressedListener {
 	
 	private SlimeGame slimeGame;
+	private Paladin paladin;
 	
 	public GameLevel(SlimeGame slimeGame) {
 		this.slimeGame = slimeGame;
@@ -19,19 +23,25 @@ public class GameLevel extends DynamicScene implements TileMapContainer {
 	@Override
 	public void setupScene() {
 		// TODO Auto-generated method stub
-		
+		paladin = new Paladin(new Coordinate2D(getWidth() / 2, getHeight() / 4), 
+				slimeGame, 
+				100, 
+				1, 
+				10, 
+				0.7);
 	}
 
 	@Override
 	public void setupEntities() {
 		// TODO Auto-generated method stub
-		addEntity(new Paladin(new Coordinate2D(getWidth() / 2, getHeight() / 4), 
-								slimeGame, 
-								100, 
-								1, 
-								10, 
-								0.7));
+		addEntity(paladin);
 
+	}
+	
+	@Override
+	public void onMouseButtonPressed(MouseButton button, Coordinate2D coordinate2d) {
+		// TODO Auto-generated method stub
+		paladin.Attack();
 	}
 
 	@Override

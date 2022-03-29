@@ -4,6 +4,7 @@ import java.util.Set;
 
 import com.github.hanyaeger.SlimeGame.SlimeGame;
 import com.github.hanyaeger.api.Coordinate2D;
+import com.github.hanyaeger.api.userinput.MouseButtonPressedListener;
 
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
@@ -20,6 +21,8 @@ public class Paladin extends Player {
 		boolean upKey = pressedKeys.contains(KeyCode.UP) || pressedKeys.contains(KeyCode.W);
 		boolean rightKey = pressedKeys.contains(KeyCode.RIGHT) || pressedKeys.contains(KeyCode.D);
 		boolean downKey = pressedKeys.contains(KeyCode.DOWN) || pressedKeys.contains(KeyCode.S);
+		
+		
 		//diagonal movement
 		if(leftKey && upKey) {
 			setMotion(10, 225d);
@@ -51,12 +54,6 @@ public class Paladin extends Player {
 	protected void setupEntities() {
 		// TODO Auto-generated method stub
 		addEntity(new PaladinSprite(new Coordinate2D(0, 0)));
-	}
-	
-	@Override
-	public void onMouseButtonPressed(MouseButton button) {
-		// TODO Auto-generated method stub
-		Attack();
 	}
 	
 	@Override

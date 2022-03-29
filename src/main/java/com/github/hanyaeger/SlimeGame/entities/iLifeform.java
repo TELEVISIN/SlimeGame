@@ -40,7 +40,7 @@ public abstract class iLifeform extends DynamicCompositeEntity {
 		
 	}
 	
-	public void Attack(SlimeGame slimeGame) {
+	public void Attack() {
 		
 	}
 	

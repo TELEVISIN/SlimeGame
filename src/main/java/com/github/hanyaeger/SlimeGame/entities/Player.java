@@ -38,15 +38,10 @@ public abstract class Player extends iLifeform implements KeyListener {
 				
 	}
 	
-	public void onMouseButtonPressed(MouseButton button) {
-		// TODO Auto-generated method stub
-	}
-	
 	public void Attack() {
 		
 	}
 	//onCollison
-	//Attack
 	//Move
 	//updateHealth
 	//updateExperience
