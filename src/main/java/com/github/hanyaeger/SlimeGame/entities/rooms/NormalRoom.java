@@ -10,6 +10,8 @@ public class NormalRoom extends Room{
     Random random = new Random();
     int wallChanceMaximum = 10;
     int wallChance;
+    int crateChanceMaximum = 1;
+    int crateChance;
 
     public NormalRoom(GameLevel gameLevel)
     {
@@ -37,33 +39,57 @@ public class NormalRoom extends Room{
                 if (entityClassArray[oldTilemap[rowNr][columnNr] - 1] == Floor.class)
                 {
                     wallChance = random.nextInt(100);
+                    crateChance = random.nextInt(100);
 
+                    //wall has priority over crates
                     if (wallChance < wallChanceMaximum)
                     {
-                        int upperTileXIndex = columnNr;
-                        int upperTileYIndex = rowNr - 1;
-                        int rightTileXIndex = columnNr + 1;
-                        int rightTileYIndex = rowNr;
-                        int lowerTileXIndex = columnNr;
-                        int lowerTileYIndex = rowNr + 1;
-                        int leftTileXIndex = columnNr - 1;
-                        int leftTileYIndex = rowNr;
-
-                        //check if tile is next to wall
-                        if (entityClassArray[oldTilemap[upperTileYIndex][upperTileXIndex] - 1] != Wall.class &&
-                                entityClassArray[oldTilemap[rightTileYIndex][rightTileXIndex] - 1] != Wall.class &&
-                                entityClassArray[oldTilemap[lowerTileYIndex][lowerTileXIndex] - 1] != Wall.class &&
-                                entityClassArray[oldTilemap[leftTileYIndex][leftTileXIndex] - 1] != Wall.class)
-                        {
-
-                            //place wall
-                            newTilemap[rowNr][columnNr] = 10;
-                        }
-
+                        oldTilemap = addWall(oldTilemap, columnNr, rowNr);
+                    }
+                    else if (crateChance < crateChanceMaximum)
+                    {
+                        oldTilemap = addCrate(oldTilemap, columnNr, rowNr);
                     }
                 }
             }
         }
+
+        return newTilemap;
+    }
+
+    private int[][] addWall(int[][] oldTilemap, int columnNr, int rowNr)
+    {
+        int[][] newTilemap = oldTilemap;
+
+        int upperTileXIndex = columnNr;
+        int upperTileYIndex = rowNr - 1;
+        int rightTileXIndex = columnNr + 1;
+        int rightTileYIndex = rowNr;
+        int lowerTileXIndex = columnNr;
+        int lowerTileYIndex = rowNr + 1;
+        int leftTileXIndex = columnNr - 1;
+        int leftTileYIndex = rowNr;
+
+        //check if tile is next to wall
+        if (entityClassArray[oldTilemap[upperTileYIndex][upperTileXIndex] - 1] != Wall.class &&
+                entityClassArray[oldTilemap[rightTileYIndex][rightTileXIndex] - 1] != Wall.class &&
+                entityClassArray[oldTilemap[lowerTileYIndex][lowerTileXIndex] - 1] != Wall.class &&
+                entityClassArray[oldTilemap[leftTileYIndex][leftTileXIndex] - 1] != Wall.class)
+        {
+
+            //place wall
+            newTilemap[rowNr][columnNr] = 10;
+        }
+
+        return newTilemap;
+    }
+
+    private int[][] addCrate(int[][] oldTilemap, int columnNr, int rowNr)
+    {
+        int[][] newTilemap = oldTilemap;
+
+        //place crate
+        newTilemap[rowNr][columnNr] = 7;
 
         return newTilemap;
     }

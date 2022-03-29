@@ -35,11 +35,11 @@ public abstract class Room extends TileMap {
             Door.class,
             Wall.class,
             Floor.class,
+            Crate.class,
             Wall.class,
             Wall.class,
             Wall.class,
-            Wall.class,
-            Wall.class,
+            Crate.class,
             Wall.class,
             Door.class,
             Wall.class,
@@ -79,38 +79,38 @@ public abstract class Room extends TileMap {
     {
         //setup all the entities for the standard room tilemap
         addEntity(1, entityClassArray[0], "0" );
-        addEntity(2, Wall.class, "1" );
-        addEntity(3, Wall.class, "2" );
-        addEntity(4, Door.class, "3" );
-        addEntity(5, Wall.class, "4" );
-        addEntity(6, Floor.class, "5" );
-        addEntity(7, Wall.class, "6" );
-        addEntity(8, Wall.class, "7" );
-        addEntity(9, Wall.class, "8" );
-        addEntity(10, Wall.class, "9" );
-        addEntity(11, Wall.class, "10" );
-        addEntity(12, Wall.class, "11" );
-        addEntity(13, Door.class, "12" );
-        addEntity(14, Wall.class, "13" );
-        addEntity(15, Wall.class, "14" );
-        addEntity(16, Door.class, "15" );
+        addEntity(2, entityClassArray[1], "1" );
+        addEntity(3, entityClassArray[2], "2" );
+        addEntity(4, entityClassArray[3], "3" );
+        addEntity(5, entityClassArray[4], "4" );
+        addEntity(6, entityClassArray[5], "5" );
+        addEntity(7, entityClassArray[6]);
+        addEntity(8, entityClassArray[7], "7" );
+        addEntity(9, entityClassArray[8], "8" );
+        addEntity(10, entityClassArray[9], "9" );
+        addEntity(11, entityClassArray[10]);
+        addEntity(12, entityClassArray[11], "11" );
+        addEntity(13, entityClassArray[12], "12" );
+        addEntity(14, entityClassArray[13], "13" );
+        addEntity(15, entityClassArray[14], "14" );
+        addEntity(16, entityClassArray[15], "15" );
         //floor tile variants
-        addEntity(17, Floor.class, "16" );
-        addEntity(18, Floor.class, "17" );
-        addEntity(19, Floor.class, "18" );
-        addEntity(20, Floor.class, "19" );
-        addEntity(21, Floor.class, "20" );
-        addEntity(22, Floor.class, "21" );
-        addEntity(23, Floor.class, "22" );
-        addEntity(24, Floor.class, "23" );
-        addEntity(25, Floor.class, "24" );
-        addEntity(26, Floor.class, "25" );
-        addEntity(27, Floor.class, "26" );
-        addEntity(28, Floor.class, "27" );
-        addEntity(29, Floor.class, "28" );
-        addEntity(30, Floor.class, "29" );
-        addEntity(31, Floor.class, "30" );
-        addEntity(32, Floor.class, "31" );
+        addEntity(17, entityClassArray[16], "16" );
+        addEntity(18, entityClassArray[17], "17" );
+        addEntity(19, entityClassArray[18], "18" );
+        addEntity(20, entityClassArray[19], "19" );
+        addEntity(21, entityClassArray[20], "20" );
+        addEntity(22, entityClassArray[21], "21" );
+        addEntity(23, entityClassArray[22], "22" );
+        addEntity(24, entityClassArray[23], "23" );
+        addEntity(25, entityClassArray[24], "24" );
+        addEntity(26, entityClassArray[25], "25" );
+        addEntity(27, entityClassArray[26], "26" );
+        addEntity(28, entityClassArray[27], "27" );
+        addEntity(29, entityClassArray[28], "28" );
+        addEntity(30, entityClassArray[29], "29" );
+        addEntity(31, entityClassArray[30], "30" );
+        addEntity(32, entityClassArray[31], "31" );
 
     }
 

@@ -7,6 +7,7 @@ import com.github.hanyaeger.api.entities.impl.SpriteEntity;
 
 public class Crate extends SpriteEntity implements Collider {
     final int CRATE_SPRITE_INDEX = 6;
+    boolean isDestroyed = false;
 
     public Crate(Coordinate2D initialLocation, Size size) {
         super("sprites/Room_tilemap_V2.png", initialLocation, size, 12, 4);
