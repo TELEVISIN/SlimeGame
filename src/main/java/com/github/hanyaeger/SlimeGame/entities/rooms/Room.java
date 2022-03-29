@@ -2,6 +2,7 @@ package com.github.hanyaeger.SlimeGame.entities.rooms;
 
 import com.github.hanyaeger.SlimeGame.entities.obstacles.Crate;
 import com.github.hanyaeger.SlimeGame.entities.obstacles.Door;
+import com.github.hanyaeger.SlimeGame.entities.obstacles.Floor;
 import com.github.hanyaeger.SlimeGame.entities.obstacles.Wall;
 import com.github.hanyaeger.SlimeGame.scenes.GameLevel;
 import com.github.hanyaeger.api.scenes.TileMap;
@@ -26,6 +27,42 @@ public abstract class Room extends TileMap {
     int floorRandomChanceMaximum = 10;
     int floorRandomChance;
 
+    //class array to keep track of the entity classes of this tilemap
+    Class[] entityClassArray = {
+            Door.class,
+            Wall.class,
+            Wall.class,
+            Door.class,
+            Wall.class,
+            Floor.class,
+            Wall.class,
+            Wall.class,
+            Wall.class,
+            Wall.class,
+            Wall.class,
+            Wall.class,
+            Door.class,
+            Wall.class,
+            Wall.class,
+            Door.class,
+            Floor.class,
+            Floor.class,
+            Floor.class,
+            Floor.class,
+            Floor.class,
+            Floor.class,
+            Floor.class,
+            Floor.class,
+            Floor.class,
+            Floor.class,
+            Floor.class,
+            Floor.class,
+            Floor.class,
+            Floor.class,
+            Floor.class,
+            Floor.class
+    };
+
 
     public Room(GameLevel gameLevel)
     {
@@ -41,12 +78,12 @@ public abstract class Room extends TileMap {
     public void setupEntities()
     {
         //setup all the entities for the standard room tilemap
-        addEntity(1, Door.class, "0" );
+        addEntity(1, entityClassArray[0], "0" );
         addEntity(2, Wall.class, "1" );
         addEntity(3, Wall.class, "2" );
         addEntity(4, Door.class, "3" );
         addEntity(5, Wall.class, "4" );
-        addEntity(6, Wall.class, "5" );
+        addEntity(6, Floor.class, "5" );
         addEntity(7, Wall.class, "6" );
         addEntity(8, Wall.class, "7" );
         addEntity(9, Wall.class, "8" );
@@ -58,22 +95,22 @@ public abstract class Room extends TileMap {
         addEntity(15, Wall.class, "14" );
         addEntity(16, Door.class, "15" );
         //floor tile variants
-        addEntity(17, Wall.class, "16" );
-        addEntity(18, Wall.class, "17" );
-        addEntity(19, Wall.class, "18" );
-        addEntity(20, Wall.class, "19" );
-        addEntity(21, Wall.class, "20" );
-        addEntity(22, Wall.class, "21" );
-        addEntity(23, Wall.class, "22" );
-        addEntity(24, Wall.class, "23" );
-        addEntity(25, Wall.class, "24" );
-        addEntity(26, Wall.class, "25" );
-        addEntity(27, Wall.class, "26" );
-        addEntity(28, Wall.class, "27" );
-        addEntity(29, Wall.class, "28" );
-        addEntity(30, Wall.class, "29" );
-        addEntity(31, Wall.class, "30" );
-        addEntity(32, Wall.class, "31" );
+        addEntity(17, Floor.class, "16" );
+        addEntity(18, Floor.class, "17" );
+        addEntity(19, Floor.class, "18" );
+        addEntity(20, Floor.class, "19" );
+        addEntity(21, Floor.class, "20" );
+        addEntity(22, Floor.class, "21" );
+        addEntity(23, Floor.class, "22" );
+        addEntity(24, Floor.class, "23" );
+        addEntity(25, Floor.class, "24" );
+        addEntity(26, Floor.class, "25" );
+        addEntity(27, Floor.class, "26" );
+        addEntity(28, Floor.class, "27" );
+        addEntity(29, Floor.class, "28" );
+        addEntity(30, Floor.class, "29" );
+        addEntity(31, Floor.class, "30" );
+        addEntity(32, Floor.class, "31" );
 
     }
 
@@ -84,7 +121,6 @@ public abstract class Room extends TileMap {
     {
         //create empty tilemap to be filled later on
         int[][] tilemap = new int[wallAmountY][wallAmountX];
-
 
         //loop through row
         for(int columnNr = 0; columnNr < wallAmountX; columnNr++)

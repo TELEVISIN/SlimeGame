@@ -9,11 +9,15 @@ import com.github.hanyaeger.SlimeGame.entities.rooms.Room;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.scenes.DynamicScene;
 import com.github.hanyaeger.api.scenes.TileMapContainer;
+import com.github.hanyaeger.api.userinput.KeyListener;
 import com.github.hanyaeger.api.userinput.MouseButtonPressedListener;
 
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 
-public class GameLevel extends DynamicScene implements TileMapContainer, MouseButtonPressedListener {
+import java.util.Set;
+
+public class GameLevel extends DynamicScene implements TileMapContainer, MouseButtonPressedListener, KeyListener {
 	
 	private SlimeGame slimeGame;
 	private Paladin paladin;
@@ -65,5 +69,16 @@ public class GameLevel extends DynamicScene implements TileMapContainer, MouseBu
 	public void setupTileMaps() {
 		Room normalRoom = new NormalRoom(this);
 		addTileMap(normalRoom);
+	}
+
+	@Override
+	public void onPressedKeysChange(Set<KeyCode> pressedKeys) {
+		boolean escapePressed = pressedKeys.contains(KeyCode.ESCAPE);
+
+		//if escape key is pressed, go to titlescreen
+		if (escapePressed)
+		{
+			slimeGame.setActiveScene(0);
+		}
 	}
 }
