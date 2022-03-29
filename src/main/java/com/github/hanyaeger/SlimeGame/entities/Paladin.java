@@ -25,23 +25,23 @@ public class Paladin extends Player {
 		
 		//diagonal movement
 		if(leftKey && upKey) {
-			setMotion(10, 225d);
+			setMotion(5, 225d);
 		} else if (upKey && rightKey) {
-			setMotion(10, 135d);
+			setMotion(5, 135d);
 		} else if (rightKey && downKey) {
-			setMotion(10, 45d);
+			setMotion(5, 45d);
 		} else if (downKey && leftKey) {
-			setMotion(10, 315d);
+			setMotion(5, 315d);
 		}
 		//horizontal and vertical movement
 		else if(leftKey) {
-			setMotion(10, 270d);
+			setMotion(5, 270d);
 		} else if (rightKey) {
-			setMotion(10, 90d);
+			setMotion(5, 90d);
 		} else if (upKey) {
-			setMotion(10, 180d);
+			setMotion(5, 180d);
 		} else if (downKey) {
-			setMotion(10, 0d);
+			setMotion(5, 0d);
 		} 
 		
 		//stand still
@@ -54,6 +54,7 @@ public class Paladin extends Player {
 	protected void setupEntities() {
 		// TODO Auto-generated method stub
 		addEntity(new PaladinSprite(new Coordinate2D(0, 0)));
+		
 	}
 	
 	@Override

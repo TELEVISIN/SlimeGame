@@ -1,6 +1,7 @@
 package com.github.hanyaeger.SlimeGame.scenes;
 
 import com.github.hanyaeger.SlimeGame.SlimeGame;
+import com.github.hanyaeger.SlimeGame.entities.AttackSprite;
 import com.github.hanyaeger.SlimeGame.entities.Paladin;
 import com.github.hanyaeger.SlimeGame.entities.rooms.NormalRoom;
 import com.github.hanyaeger.SlimeGame.entities.rooms.Room;
@@ -35,7 +36,6 @@ public class GameLevel extends DynamicScene implements TileMapContainer, MouseBu
 	public void setupEntities() {
 		// TODO Auto-generated method stub
 		addEntity(paladin);
-
 	}
 	
 	@Override
@@ -45,6 +45,8 @@ public class GameLevel extends DynamicScene implements TileMapContainer, MouseBu
 		//LEFT MOUSE BUTTON for attacking
 		if(button == MouseButton.PRIMARY) {
 			paladin.Attack();
+			addEntity(new AttackSprite(paladin.getAnchorLocation()));
+			
 		} 
 		
 		//RIGHT MOUSE BUTTON for blocking
