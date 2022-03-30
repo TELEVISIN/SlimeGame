@@ -30,12 +30,12 @@ public class GameLevel extends DynamicScene implements TileMapContainer, MouseBu
 	@Override
 	public void setupScene() {
 		// TODO Auto-generated method stub
-		paladin = new Paladin(new Coordinate2D(getWidth() / 2, getHeight() / 4), 
-				slimeGame, 
-				100, 
-				1, 
-				10, 
-				0.7);
+		paladin = new Paladin(new Coordinate2D(getWidth() / 2, getHeight() / 2), // Coordinate2D coordinate2d
+				slimeGame, // SlimeGame slimeGame
+				100, // int health
+				1, // double speed
+				10, // double attackPower
+				0.7); // double attackSpeed
 		attackSprite = new AttackSprite(new Coordinate2D(10000, 10000));
 	}
 
