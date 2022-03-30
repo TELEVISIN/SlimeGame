@@ -7,6 +7,12 @@ import com.github.hanyaeger.api.YaegerGame;
 
 public class SlimeGame extends YaegerGame{
 	
+	public static final int SPRITE_SIZE = 32;
+
+	public static int roomTileColumns = 19; // default 19
+	public static int roomTileRows = 11; // default 11
+	public static int spriteScale = 2; // default 2
+	
 	public static void main(String[] args){
 	    launch(args);
 	}
@@ -14,7 +20,10 @@ public class SlimeGame extends YaegerGame{
 	@Override
 	public void setupGame() {
 	    setGameTitle("Tomb Of The Slime King");
-	    setSize(new Size(1216, 704));
+
+	    int SlimeGameWidth = roomTileColumns * spriteScale * SPRITE_SIZE;
+	    int SlimeGameHeight = roomTileRows * spriteScale * SPRITE_SIZE;
+	    setSize(new Size(SlimeGameWidth, SlimeGameHeight));
 	}
 
 	@Override
