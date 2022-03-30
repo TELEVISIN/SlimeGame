@@ -32,7 +32,7 @@ public abstract class iLifeform extends DynamicCompositeEntity {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public void onCollision(Collider collided) {
+	public void onCollision(Collider collidingObject) {
 		
 	}
 	

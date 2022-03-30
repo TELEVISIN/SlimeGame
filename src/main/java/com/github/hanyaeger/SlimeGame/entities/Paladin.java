@@ -5,6 +5,7 @@ import java.util.Set;
 import com.github.hanyaeger.SlimeGame.SlimeGame;
 import com.github.hanyaeger.api.AnchorPoint;
 import com.github.hanyaeger.api.Coordinate2D;
+import com.github.hanyaeger.api.entities.Collider;
 import com.github.hanyaeger.api.userinput.MouseButtonPressedListener;
 
 import javafx.scene.input.KeyCode;
@@ -56,8 +57,12 @@ public class Paladin extends Player {
 
 	@Override
 	protected void setupEntities() {
-		// TODO Auto-generated method stub
 		addEntity(new PaladinSprite(new Coordinate2D(0, 0)));
+		addEntity(new LifeformHitbox(this, new Coordinate2D(0, 0), SlimeGame.roomTileColumns, SlimeGame.roomTileRows));
+	}
+		
+	public void onCollision(Collider collidingObject) {
+		System.out.println(collidingObject.getClass().getName());
 	}
 	
 	@Override
