@@ -3,6 +3,7 @@ package com.github.hanyaeger.SlimeGame.entities;
 import java.util.Set;
 
 import com.github.hanyaeger.SlimeGame.SlimeGame;
+import com.github.hanyaeger.SlimeGame.entities.obstacles.Crate;
 import com.github.hanyaeger.SlimeGame.entities.obstacles.Wall;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.entities.Collider;
@@ -54,14 +55,33 @@ public abstract class Player extends iLifeform implements KeyListener {
 	}
 
 	public void onCollision(Collider collidingObject) {
-		if (collidingObject instanceof Wall)
+		if (collidingObject instanceof Wall || collidingObject instanceof Crate)
 		{
-			double wallX = ((Wall) collidingObject).getAnchorLocation().getX();
-			double wallY = ((Wall) collidingObject).getAnchorLocation().getY();
-			double wallSize = ((Wall) collidingObject).getWidth();
+			double wallX;
+			double wallY;
+			double wallSize;
+
+			if (collidingObject instanceof Wall)
+			{
+				wallX = ((Wall) collidingObject).getAnchorLocation().getX();
+				wallY = ((Wall) collidingObject).getAnchorLocation().getY();
+				wallSize = ((Wall) collidingObject).getWidth();
+			}
+			else
+			{
+				if (((Crate)collidingObject).isDestroyed)
+				{
+					//if crate is destroyed, cancel collision
+					return;
+				}
+
+				wallX = ((Crate) collidingObject).getAnchorLocation().getX();
+				wallY = ((Crate) collidingObject).getAnchorLocation().getY();
+				wallSize = ((Crate) collidingObject).getWidth();
+			}
+
 			double lifeFormX = this.getLocationInScene().getX();
 			double lifeFormY = this.getLocationInScene().getY();
-			double lifeFormSize = this.getWidth();
 
 			boolean topWall = lifeFormY >= wallY + wallSize * 1.4 && lifeFormX >= wallX - wallSize;
 			boolean bottomWall = lifeFormY <= wallY - wallSize * 0.4 && lifeFormX >= wallX - wallSize;
