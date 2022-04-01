@@ -20,7 +20,7 @@ public class Paladin extends Player {
 	@Override
 	protected void setupEntities() {
 		addEntity(new PaladinSprite(new Coordinate2D(0, 0), new Size(width, height)));
-		addEntity(new LifeformHitbox(this, new Coordinate2D(0, 0), width, height));
+		addEntity(new LifeformHitbox(this, new Coordinate2D(0, 0), (int)(width * 0.95), (int)(height * 0.95)));
 	}
 		
 

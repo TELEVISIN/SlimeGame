@@ -63,11 +63,11 @@ public abstract class Player extends iLifeform implements KeyListener {
 			double lifeFormY = this.getLocationInScene().getY();
 			double lifeFormSize = this.getWidth();
 
+			boolean topWall = lifeFormY >= wallY + wallSize * 1.4 && lifeFormX >= wallX - wallSize;
+			boolean bottomWall = lifeFormY <= wallY - wallSize * 0.4 && lifeFormX >= wallX - wallSize;
 
-			boolean topWall = wallY < lifeFormY;
-			boolean bottomWall = wallY > lifeFormY;
-			boolean rightWall = wallX > lifeFormX;
-			boolean leftWall = wallY < lifeFormY;
+			boolean rightWall = lifeFormX <= wallX - wallSize * 0.4 && lifeFormY >= wallY - wallSize;
+			boolean leftWall = lifeFormX >= wallX + wallSize * 1.4 && lifeFormY <= wallY + wallSize * 1.4;
 
 			//if wall is top
 			if (topWall)
@@ -102,7 +102,7 @@ public abstract class Player extends iLifeform implements KeyListener {
 					//go right if right is also pressed
 					setMotion(speed / 2, 270d);
 				}
-				else if (upKey && downKey)
+				else if (rightKey && downKey)
 				{
 					//go left if left is also pressed
 					setMotion(speed / 2, 90d);
