@@ -15,25 +15,6 @@ public class AttackSprite extends DynamicSpriteEntity implements MouseButtonPres
 
 	public AttackSprite(Coordinate2D initialLocation) {
 		super("sprites/LifeformSpriteSheet.png", initialLocation, new Size(64, 64), 8, 8);
-		
-		//change sprite depending on where player is facing
-		//0 = up, 1 = right, 2 = down, 3 = left
-        switch(PaladinSprite.direction) {
-        	case 0:
-        		setCurrentFrameIndex(27); //up
-        		break;
-        	case 1:
-        		setCurrentFrameIndex(11); //right
-        		break;
-        	case 2:
-        		setCurrentFrameIndex(3); //down
-        		break;
-        	case 3:
-        		setCurrentFrameIndex(19); //left
-        		break;
-        	default:
-        		break;
-        }
 	}
 
 	@Override
@@ -45,6 +26,26 @@ public class AttackSprite extends DynamicSpriteEntity implements MouseButtonPres
 	}
 	
 	public void appear(Coordinate2D coordinate2d) {
+
+		//change sprite depending on where player is facing
+		//0 = up, 1 = right, 2 = down, 3 = left
+		switch(PaladinSprite.direction) {
+			case 0:
+				setCurrentFrameIndex(27); //up
+				break;
+			case 1:
+				setCurrentFrameIndex(11); //right
+				break;
+			case 2:
+				setCurrentFrameIndex(3); //down
+				break;
+			case 3:
+				setCurrentFrameIndex(19); //left
+				break;
+			default:
+				break;
+		}
+
 		setAnchorLocation(coordinate2d);
 	}
 	

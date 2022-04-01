@@ -30,6 +30,8 @@ public class GameLevel extends DynamicScene implements TileMapContainer, MouseBu
 	@Override
 	public void setupScene() {
 		// TODO Auto-generated method stub
+		setBackgroundAudio("audio/Algar Euphoria Green Flower Loopable.mp3");
+
 		paladin = new Paladin(new Coordinate2D(getWidth() / 2, getHeight() / 2), // Coordinate2D coordinate2d
 				slimeGame, // SlimeGame slimeGame
 				100, // int health
