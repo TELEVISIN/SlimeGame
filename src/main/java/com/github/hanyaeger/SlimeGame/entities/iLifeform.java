@@ -19,6 +19,11 @@ public abstract class iLifeform extends DynamicCompositeEntity {
 	final double BASE_SPEED = 1.5; //0.7 tiles per second?
 	final double BASE_ATTACK_POWER = 10;
 	final double BASE_ATTACK_SPEED = 0.7;
+
+	boolean canMoveUp = true;
+	boolean canMoveDown = true;
+	boolean canMoveLeft = true;
+	boolean canMoveRight = true;
 	
 	int health;
 	float speed;

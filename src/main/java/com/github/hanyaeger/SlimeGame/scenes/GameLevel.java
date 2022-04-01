@@ -3,7 +3,6 @@ package com.github.hanyaeger.SlimeGame.scenes;
 import com.github.hanyaeger.SlimeGame.SlimeGame;
 import com.github.hanyaeger.SlimeGame.entities.AttackSprite;
 import com.github.hanyaeger.SlimeGame.entities.Paladin;
-import com.github.hanyaeger.SlimeGame.entities.PaladinSprite;
 import com.github.hanyaeger.SlimeGame.entities.rooms.NormalRoom;
 import com.github.hanyaeger.SlimeGame.entities.rooms.Room;
 import com.github.hanyaeger.api.Coordinate2D;

@@ -14,8 +14,8 @@ public class PaladinSprite extends DynamicSpriteEntity implements KeyListener {
 
 	
 	public static int direction = 2; // 0 = up, 1 = right, 2 = down, 3 = left
-	public PaladinSprite(Coordinate2D initialLocation) {
-		super("sprites/LifeformSpriteSheet.png", initialLocation, new Size(64, 64), 8, 8);
+	public PaladinSprite(Coordinate2D initialLocation, Size size) {
+		super("sprites/LifeformSpriteSheet.png", initialLocation, size, 8, 8);
         setCurrentFrameIndex(0);
 	}
 

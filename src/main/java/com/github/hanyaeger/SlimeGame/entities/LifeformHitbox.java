@@ -8,16 +8,22 @@ import com.github.hanyaeger.api.entities.impl.RectangleEntity;
 
 public class LifeformHitbox extends RectangleEntity implements Collided{
 	
-	iLifeform iLifeform;
+	iLifeform ilifeform;
 	
-	public LifeformHitbox(iLifeform iLifeform, Coordinate2D initialPosition, int width, int height) {
+	public LifeformHitbox(iLifeform ilifeform, Coordinate2D initialPosition, int width, int height) {
 		super(initialPosition);
-		this.iLifeform = iLifeform;
+		this.ilifeform = ilifeform;
+		setWidth(width);
+		setHeight(height);
+		setOpacity(0);
 	}
 
 	@Override
 	public void onCollision(Collider collidingObject) {
 		// TODO Auto-generated method stub
-		iLifeform.onCollision(collidingObject);
+		ilifeform.onCollision(collidingObject);
+
+		//wall collision
+
 	}
 }
