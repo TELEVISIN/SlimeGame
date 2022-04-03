@@ -6,10 +6,10 @@ import com.github.hanyaeger.api.Coordinate2D;
 
 public abstract class Slime extends Enemy {
 
-	final int BASE_HEALTH = 100;
+	final int BASE_HEALTH = 25;
 	final double BASE_SPEED = 5;
-	final double BASE_ATTACK_SPEED = 0.7;
-	final double BASE_ATTACK_POWER = 10;
+	final double BASE_ATTACK_SPEED = 1;
+	final double BASE_ATTACK_POWER = 5;
 	GameLevel gameLevel;
 	
 	public Slime(Coordinate2D coordinate2d, SlimeGame slimeGame) {

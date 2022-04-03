@@ -28,6 +28,7 @@ public class Paladin extends Player {
 	@Override
 	public void Attack() {
 		System.out.println("Attack!");
+		//handle slimes being attacked;
 	}
 	
 	public void Block() {

@@ -55,6 +55,14 @@ public abstract class Player extends iLifeform implements KeyListener {
 	}
 
 	public void onCollision(Collider collidingObject) {
+		if (collidingObject instanceof Enemy) {
+			double slimeX;
+			double slimeY;
+			
+			slimeX = ((Slime) collidingObject).getAnchorLocation().getX();
+			slimeY = ((Slime) collidingObject).getAnchorLocation().getY();
+		}
+		
 		if (collidingObject instanceof Wall || collidingObject instanceof Crate)
 		{
 			double wallX;
