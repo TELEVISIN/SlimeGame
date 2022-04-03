@@ -4,6 +4,8 @@ import com.github.hanyaeger.SlimeGame.SlimeGame;
 import com.github.hanyaeger.SlimeGame.entities.AttackSprite;
 import com.github.hanyaeger.SlimeGame.entities.AttackTimer;
 import com.github.hanyaeger.SlimeGame.entities.Paladin;
+import com.github.hanyaeger.SlimeGame.entities.SlimeSprite;
+import com.github.hanyaeger.SlimeGame.entities.SmallSlime;
 import com.github.hanyaeger.SlimeGame.entities.rooms.NormalRoom;
 import com.github.hanyaeger.SlimeGame.entities.rooms.Room;
 import com.github.hanyaeger.api.Coordinate2D;
@@ -24,6 +26,9 @@ public class GameLevel extends DynamicScene implements TileMapContainer, MouseBu
     private SlimeGame slimeGame;
     private Paladin paladin;
     private AttackSprite attackSprite;
+    private SmallSlime smallSlime;
+    private SlimeSprite slimeSprite;
+    
     private Timer timer;
     
     public GameLevel(SlimeGame slimeGame) {
@@ -42,12 +47,16 @@ public class GameLevel extends DynamicScene implements TileMapContainer, MouseBu
 				10, // double attackPower
 				0.7); // double attackSpeed
 		attackSprite = new AttackSprite(new Coordinate2D(10000, 10000));
+		
+		smallSlime = new SmallSlime(new Coordinate2D(getWidth() / 3, getHeight() / 4),
+				slimeGame);
 	}
 
     @Override
     public void setupEntities() {
         // TODO Auto-generated method stub
         addEntity(paladin);
+        addEntity(smallSlime);
     }
     
     @Override
