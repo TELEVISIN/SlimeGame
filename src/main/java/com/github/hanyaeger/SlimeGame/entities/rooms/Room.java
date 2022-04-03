@@ -1,5 +1,6 @@
 package com.github.hanyaeger.SlimeGame.entities.rooms;
 
+import com.github.hanyaeger.SlimeGame.SlimeGame;
 import com.github.hanyaeger.SlimeGame.entities.obstacles.Crate;
 import com.github.hanyaeger.SlimeGame.entities.obstacles.Door;
 import com.github.hanyaeger.SlimeGame.entities.obstacles.Floor;
@@ -12,7 +13,7 @@ import java.util.Random;
 
 public abstract class Room extends TileMap {
     final int DOOR_NR = 4;
-    final int SPRITE_SIZE = 64;
+//    final int SPRITE_SIZE = 64;
 
     int wallAmountX;
     int wallAmountY;
@@ -69,8 +70,10 @@ public abstract class Room extends TileMap {
         this.gameLevel = gameLevel;
 
         //set amount of wall x and y
-        wallAmountX = (int) (gameLevel.getWidth() / SPRITE_SIZE);
-        wallAmountY = (int) (gameLevel.getHeight() / SPRITE_SIZE);
+        wallAmountX = SlimeGame.roomTileColumns;
+        wallAmountY = SlimeGame.roomTileRows;
+//        wallAmountX = (int) (gameLevel.getWidth() / SPRITE_SIZE);
+//        wallAmountY = (int) (gameLevel.getHeight() / SPRITE_SIZE);
 
         createTileMap();
     }

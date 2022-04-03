@@ -4,7 +4,6 @@ import com.github.hanyaeger.SlimeGame.SlimeGame;
 import com.github.hanyaeger.SlimeGame.entities.AttackSprite;
 import com.github.hanyaeger.SlimeGame.entities.AttackTimer;
 import com.github.hanyaeger.SlimeGame.entities.Paladin;
-import com.github.hanyaeger.SlimeGame.entities.PaladinSprite;
 import com.github.hanyaeger.SlimeGame.entities.rooms.NormalRoom;
 import com.github.hanyaeger.SlimeGame.entities.rooms.Room;
 import com.github.hanyaeger.api.Coordinate2D;
@@ -31,16 +30,19 @@ public class GameLevel extends DynamicScene implements TileMapContainer, MouseBu
         this.slimeGame = slimeGame;
     }
 
-    @Override
-    public void setupScene() {
-        // TODO Auto-generated method stub
-        paladin = new Paladin(new Coordinate2D(getWidth() / 2, getHeight() / 4), 
-                slimeGame, 
-                100, 
-                1, 
-                10, 
-                0.7);
-    }
+	@Override
+	public void setupScene() {
+		// TODO Auto-generated method stub
+		setBackgroundAudio("audio/Algar Euphoria Green Flower Loopable.mp3");
+
+		paladin = new Paladin(new Coordinate2D(getWidth() / 2, getHeight() / 2), // Coordinate2D coordinate2d
+				slimeGame, // SlimeGame slimeGame
+				100, // int health
+				1, // double speed
+				10, // double attackPower
+				0.7); // double attackSpeed
+		attackSprite = new AttackSprite(new Coordinate2D(10000, 10000));
+	}
 
     @Override
     public void setupEntities() {
