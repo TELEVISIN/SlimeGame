@@ -23,6 +23,11 @@ public abstract class Player extends iLifeform implements KeyListener {
 	final double BASE_SPEED = 5;
 	final double BASE_ATTACK_SPEED = 0.7;
 	final double BASE_ATTACK_POWER = 10;
+	final int CORNER_CLIP_BUFFER = 2;
+
+	double hitboxMultiplier = 0.8;
+	int width = SlimeGame.SPRITE_SIZE * SlimeGame.spriteScale;
+	int height = SlimeGame.SPRITE_SIZE * SlimeGame.spriteScale;
 	
 	int health = BASE_HEALTH;
 	double speed = BASE_SPEED;
@@ -59,13 +64,14 @@ public abstract class Player extends iLifeform implements KeyListener {
 		{
 			double wallX;
 			double wallY;
-			double wallSize;
+			double wallSize = SlimeGame.SPRITE_SIZE * SlimeGame.spriteScale;
+			double playerHitboxSize = height * hitboxMultiplier;
 
 			if (collidingObject instanceof Wall)
 			{
 				wallX = ((Wall) collidingObject).getAnchorLocation().getX();
 				wallY = ((Wall) collidingObject).getAnchorLocation().getY();
-				wallSize = ((Wall) collidingObject).getWidth();
+				//wallSize = ((Wall) collidingObject).getWidth();
 			}
 			else
 			{
@@ -77,17 +83,38 @@ public abstract class Player extends iLifeform implements KeyListener {
 
 				wallX = ((Crate) collidingObject).getAnchorLocation().getX();
 				wallY = ((Crate) collidingObject).getAnchorLocation().getY();
-				wallSize = ((Crate) collidingObject).getWidth();
+				//wallSize = ((Crate) collidingObject).getWidth();
 			}
+
 
 			double lifeFormX = this.getLocationInScene().getX();
 			double lifeFormY = this.getLocationInScene().getY();
 
-			boolean topWall = lifeFormY >= wallY + wallSize * 1.4 && lifeFormX >= wallX - wallSize;
-			boolean bottomWall = lifeFormY <= wallY - wallSize * 0.4 && lifeFormX >= wallX - wallSize;
+			System.out.print("LifeForm X: ");
+			System.out.print(lifeFormY);
+			System.out.print(", Wall X: ");
+			System.out.print(wallY);
+			System.out.print(", Wall Size: ");
+			System.out.println(wallSize);
 
-			boolean rightWall = lifeFormX <= wallX - wallSize * 0.4 && lifeFormY >= wallY - wallSize;
-			boolean leftWall = lifeFormX >= wallX + wallSize * 1.4 && lifeFormY <= wallY + wallSize * 1.4;
+			boolean topWall = (wallY <= lifeFormY + wallSize * 0.4) &&
+							  (lifeFormX < wallX + wallSize * 1.4 - CORNER_CLIP_BUFFER) &&
+							  (lifeFormX > wallX - wallSize * 0.4 + CORNER_CLIP_BUFFER);
+
+			boolean bottomWall = (wallY >= lifeFormY - wallSize * 0.4) &&
+								 (lifeFormX < wallX + wallSize * 1.4 - CORNER_CLIP_BUFFER) &&
+								 (lifeFormX > wallX + CORNER_CLIP_BUFFER);
+
+			boolean rightWall = (wallX <= lifeFormX - wallSize * 0.4) &&
+								(lifeFormY < wallY + wallSize * 1.4 - CORNER_CLIP_BUFFER) &&
+								(lifeFormY > wallY + CORNER_CLIP_BUFFER);
+
+			boolean leftWall = (wallX >= lifeFormX + wallSize * 0.4) &&
+							   (lifeFormY < wallY + wallSize * 1.4 - CORNER_CLIP_BUFFER) &&
+							   (lifeFormY > wallY + CORNER_CLIP_BUFFER);
+
+			//boolean rightWall = lifeFormX <= wallX;
+			//boolean leftWall = true;
 
 			//if wall is top
 			if (topWall)
