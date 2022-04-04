@@ -4,13 +4,16 @@ import com.github.hanyaeger.SlimeGame.SlimeGame;
 import com.github.hanyaeger.SlimeGame.entities.AttackSprite;
 import com.github.hanyaeger.SlimeGame.entities.AttackTimer;
 import com.github.hanyaeger.SlimeGame.entities.Paladin;
+import com.github.hanyaeger.SlimeGame.entities.Player;
 import com.github.hanyaeger.SlimeGame.entities.SlimeSprite;
 import com.github.hanyaeger.SlimeGame.entities.SmallSlime;
 import com.github.hanyaeger.SlimeGame.entities.rooms.NormalRoom;
 import com.github.hanyaeger.SlimeGame.entities.rooms.Room;
+import com.github.hanyaeger.api.AnchorPoint;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Timer;
 import com.github.hanyaeger.api.TimerContainer;
+import com.github.hanyaeger.api.entities.impl.TextEntity;
 import com.github.hanyaeger.api.scenes.DynamicScene;
 import com.github.hanyaeger.api.scenes.TileMapContainer;
 import com.github.hanyaeger.api.userinput.KeyListener;
@@ -18,6 +21,9 @@ import com.github.hanyaeger.api.userinput.MouseButtonPressedListener;
 
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 
 import java.util.Set;
 
@@ -55,6 +61,16 @@ public class GameLevel extends DynamicScene implements TileMapContainer, MouseBu
     @Override
     public void setupEntities() {
         // TODO Auto-generated method stub
+    	var healthBar = new TextEntity(
+    	        new Coordinate2D(getWidth() / 2, getHeight() - 75),
+    	        "Health: " + Player.health
+    	    );
+	    healthBar.setAnchorPoint(AnchorPoint.CENTER_CENTER);
+	    healthBar.setFill(Color.RED);
+	    healthBar.setFont(Font.font("Roboto", FontWeight.BOLD, 30));
+	    addEntity(healthBar);
+    	
+    	
         addEntity(paladin);
         addEntity(smallSlime);
     }
