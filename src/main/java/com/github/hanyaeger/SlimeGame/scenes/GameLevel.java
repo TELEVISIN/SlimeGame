@@ -4,11 +4,17 @@ import com.github.hanyaeger.SlimeGame.SlimeGame;
 import com.github.hanyaeger.SlimeGame.entities.AttackSprite;
 import com.github.hanyaeger.SlimeGame.entities.AttackTimer;
 import com.github.hanyaeger.SlimeGame.entities.Paladin;
+import com.github.hanyaeger.SlimeGame.entities.PaladinSprite;
+import com.github.hanyaeger.SlimeGame.entities.Player;
+import com.github.hanyaeger.SlimeGame.entities.SlimeSprite;
+import com.github.hanyaeger.SlimeGame.entities.SmallSlime;
 import com.github.hanyaeger.SlimeGame.entities.rooms.NormalRoom;
 import com.github.hanyaeger.SlimeGame.entities.rooms.Room;
+import com.github.hanyaeger.api.AnchorPoint;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Timer;
 import com.github.hanyaeger.api.TimerContainer;
+import com.github.hanyaeger.api.entities.impl.TextEntity;
 import com.github.hanyaeger.api.scenes.DynamicScene;
 import com.github.hanyaeger.api.scenes.TileMapContainer;
 import com.github.hanyaeger.api.userinput.KeyListener;
@@ -16,6 +22,9 @@ import com.github.hanyaeger.api.userinput.MouseButtonPressedListener;
 
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 
 import java.util.Set;
 
@@ -23,7 +32,8 @@ public class GameLevel extends DynamicScene implements TileMapContainer, MouseBu
     
     private SlimeGame slimeGame;
     private Paladin paladin;
-    private AttackSprite attackSprite;
+    private SmallSlime smallSlime;
+    
     private Timer timer;
     
     public GameLevel(SlimeGame slimeGame) {
@@ -41,13 +51,26 @@ public class GameLevel extends DynamicScene implements TileMapContainer, MouseBu
 				1, // double speed
 				10, // double attackPower
 				0.7); // double attackSpeed
-		attackSprite = new AttackSprite(new Coordinate2D(10000, 10000));
+		
+		smallSlime = new SmallSlime(new Coordinate2D(getWidth() / 3, getHeight() / 4),
+				slimeGame);
 	}
 
     @Override
     public void setupEntities() {
         // TODO Auto-generated method stub
+    	var healthBar = new TextEntity(
+    	        new Coordinate2D(getWidth() / 2, getHeight() - 75),
+    	        "Health: " + Player.health
+    	    );
+	    healthBar.setAnchorPoint(AnchorPoint.CENTER_CENTER);
+	    healthBar.setFill(Color.RED);
+	    healthBar.setFont(Font.font("Roboto", FontWeight.BOLD, 30));
+	    addEntity(healthBar);
+    	
+    	
         addEntity(paladin);
+        addEntity(smallSlime);
     }
     
     @Override

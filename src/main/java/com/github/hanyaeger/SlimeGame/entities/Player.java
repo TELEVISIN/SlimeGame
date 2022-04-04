@@ -19,7 +19,7 @@ import javafx.scene.input.MouseButton;
  */
 
 public abstract class Player extends iLifeform implements KeyListener {
-	final int BASE_HEALTH = 100;
+	final static int BASE_HEALTH = 100;
 	final double BASE_SPEED = 5;
 	final double BASE_ATTACK_SPEED = 0.7;
 	final double BASE_ATTACK_POWER = 10;
@@ -29,7 +29,7 @@ public abstract class Player extends iLifeform implements KeyListener {
 	int width = SlimeGame.SPRITE_SIZE * SlimeGame.spriteScale;
 	int height = SlimeGame.SPRITE_SIZE * SlimeGame.spriteScale;
 	
-	int health = BASE_HEALTH;
+	public static int health = BASE_HEALTH;
 	double speed = BASE_SPEED;
 	double attackPower = BASE_ATTACK_POWER;
 	double attackSpeed = BASE_ATTACK_SPEED;
@@ -60,6 +60,12 @@ public abstract class Player extends iLifeform implements KeyListener {
 	}
 
 	public void onCollision(Collider collidingObject) {
+		if (collidingObject instanceof Enemy) {
+			System.out.println("Enemy");
+			health -= 5;
+			
+		}
+		
 		if (collidingObject instanceof Wall || collidingObject instanceof Crate)
 		{
 			double wallX;
