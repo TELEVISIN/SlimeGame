@@ -1,8 +1,10 @@
 package com.github.hanyaeger.SlimeGame.entities;
 
 import com.github.hanyaeger.SlimeGame.SlimeGame;
+import com.github.hanyaeger.SlimeGame.entities.rooms.Room;
 import com.github.hanyaeger.SlimeGame.scenes.GameLevel;
 import com.github.hanyaeger.api.Coordinate2D;
+import com.github.hanyaeger.api.entities.Collider;
 
 public abstract class Enemy extends iLifeform {
 	public Enemy(Coordinate2D coordinate2d, SlimeGame slimeGame) {
@@ -19,14 +21,38 @@ public abstract class Enemy extends iLifeform {
 	double attackPower = BASE_ATTACK_POWER;
 	double attackSpeed = BASE_ATTACK_SPEED;
 
+	boolean isAlive = true;
+	Room parentRoom;
+
 	SlimeGame slimeGame;
 	GameLevel gameLevel;
 	
-	public void onCollision() {
-		
+	public void onCollision(Collider collidingObject) {
+		//if collide with attack, take damage
+		if (collidingObject instanceof AttackSprite)
+		{
+			TakeDamage((AttackSprite) collidingObject);
+		}
+	}
+
+	public void TakeDamage(AttackSprite attackSprite)
+	{
+		//if still alive
+		if (isAlive) {
+			health -= attackSprite.attackPower;
+			System.out.println("ENEMY HIT");
+
+			//if health hits or drops below zero, kill
+			if (health <= 0) {
+				parentRoom.updateEnemiesKilled();
+				isAlive = false;
+				System.out.println("ENEMY KILLED");
+			}
+		}
+
 	}
 	
-	public void Atatck() {
+	public void Attack() {
 		
 	}
 	

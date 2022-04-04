@@ -17,6 +17,7 @@ public class AttackSprite extends DynamicSpriteEntity implements MouseButtonPres
 
 	private long createdTimestamp;
 	private long attackTimer = 100000000;
+	public int attackPower = 1;
 	
 	public AttackSprite(Coordinate2D initialLocation) {
 		super("sprites/LifeformSpriteSheet.png", initialLocation, new Size(64, 64), 8, 8);

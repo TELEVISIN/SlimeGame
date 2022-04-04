@@ -1,6 +1,7 @@
 package com.github.hanyaeger.SlimeGame.entities;
 
 import com.github.hanyaeger.SlimeGame.SlimeGame;
+import com.github.hanyaeger.SlimeGame.entities.rooms.Room;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
 
@@ -14,9 +15,9 @@ public class SmallSlime extends Slime {
 	final double BASE_ATTACK_SPEED = 0.7;
 	final double BASE_ATTACK_POWER = 10;
 	
-	public SmallSlime(Coordinate2D coordinate2d, SlimeGame slimeGame) {
+	public SmallSlime(Coordinate2D coordinate2d, SlimeGame slimeGame, Room parentRoom) {
 		super(coordinate2d, slimeGame);
-		// TODO Auto-generated constructor stub
+		this.parentRoom = parentRoom;
 	}
 
 	@Override

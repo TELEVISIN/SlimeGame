@@ -33,6 +33,8 @@ public class GameLevel extends DynamicScene implements TileMapContainer, MouseBu
     private SmallSlime smallSlime;
     
     private Timer timer;
+
+    protected Room normalRoom;
     
     public GameLevel(SlimeGame slimeGame) {
         this.slimeGame = slimeGame;
@@ -43,6 +45,9 @@ public class GameLevel extends DynamicScene implements TileMapContainer, MouseBu
 		// TODO Auto-generated method stub
 		setBackgroundAudio("audio/Algar Euphoria Green Flower Loopable.mp3");
 
+        //generate the room first time
+        generateRoom();
+
 		paladin = new Paladin(new Coordinate2D(getWidth() / 2, getHeight() / 2), // Coordinate2D coordinate2d
 				slimeGame, // SlimeGame slimeGame
 				100, // int health
@@ -51,7 +56,7 @@ public class GameLevel extends DynamicScene implements TileMapContainer, MouseBu
 				0.7); // double attackSpeed
 		
 		smallSlime = new SmallSlime(new Coordinate2D(getWidth() / 3, getHeight() / 4),
-				slimeGame);
+				slimeGame, normalRoom);
 	}
 
     @Override
@@ -90,14 +95,17 @@ public class GameLevel extends DynamicScene implements TileMapContainer, MouseBu
         }
     }
 
-    
-    
-    
+
     //handle map
     @Override
     public void setupTileMaps() {
-        Room normalRoom = new NormalRoom(this);
         addTileMap(normalRoom);
+    }
+
+    //generate a new room
+    public void generateRoom()
+    {
+        normalRoom = new NormalRoom(this);
     }
 
     @Override

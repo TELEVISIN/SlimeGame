@@ -7,15 +7,23 @@ import com.github.hanyaeger.SlimeGame.scenes.GameLevel;
 import java.util.Random;
 
 public class NormalRoom extends Room{
+    final int MAX_ENEMIES = 10;
+    final int MIN_ENEMIES = 3;
+
     Random random = new Random();
     int wallChanceMaximum = 10;
     int wallChance;
     int crateChanceMaximum = 1;
     int crateChance;
 
+
     public NormalRoom(GameLevel gameLevel)
     {
         super(gameLevel);
+
+        //set enemy variables
+        enemyCount = random.nextInt(MAX_ENEMIES - MIN_ENEMIES) + MIN_ENEMIES;
+        enemiesKilled = 0;
     }
 
 
@@ -76,7 +84,6 @@ public class NormalRoom extends Room{
                 entityClassArray[oldTilemap[lowerTileYIndex][lowerTileXIndex] - 1] != Wall.class &&
                 entityClassArray[oldTilemap[leftTileYIndex][leftTileXIndex] - 1] != Wall.class)
         {
-
             //place wall
             newTilemap[rowNr][columnNr] = 10;
         }

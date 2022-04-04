@@ -12,11 +12,11 @@ import java.util.List;
 import java.util.Random;
 
 public abstract class Room extends TileMap {
-    final int DOOR_NR = 4;
-//    final int SPRITE_SIZE = 64;
-
     int wallAmountX;
     int wallAmountY;
+
+    int enemyCount;
+    int enemiesKilled = 0;
 
     GameLevel gameLevel;
 
@@ -247,6 +247,11 @@ public abstract class Room extends TileMap {
         return tilemap;
     }
 
+
+    public void updateEnemiesKilled()
+    {
+        enemiesKilled++;
+    }
 
 
     private void spawnEnemies() {}
