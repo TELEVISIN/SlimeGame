@@ -4,6 +4,7 @@ import com.github.hanyaeger.SlimeGame.SlimeGame;
 import com.github.hanyaeger.SlimeGame.entities.AttackSprite;
 import com.github.hanyaeger.SlimeGame.entities.AttackTimer;
 import com.github.hanyaeger.SlimeGame.entities.Paladin;
+import com.github.hanyaeger.SlimeGame.entities.PaladinSprite;
 import com.github.hanyaeger.SlimeGame.entities.Player;
 import com.github.hanyaeger.SlimeGame.entities.SlimeSprite;
 import com.github.hanyaeger.SlimeGame.entities.SmallSlime;
@@ -31,9 +32,7 @@ public class GameLevel extends DynamicScene implements TileMapContainer, MouseBu
     
     private SlimeGame slimeGame;
     private Paladin paladin;
-    private AttackSprite attackSprite;
     private SmallSlime smallSlime;
-    private SlimeSprite slimeSprite;
     
     private Timer timer;
     
@@ -52,7 +51,6 @@ public class GameLevel extends DynamicScene implements TileMapContainer, MouseBu
 				1, // double speed
 				10, // double attackPower
 				0.7); // double attackSpeed
-		attackSprite = new AttackSprite(new Coordinate2D(10000, 10000));
 		
 		smallSlime = new SmallSlime(new Coordinate2D(getWidth() / 3, getHeight() / 4),
 				slimeGame);
