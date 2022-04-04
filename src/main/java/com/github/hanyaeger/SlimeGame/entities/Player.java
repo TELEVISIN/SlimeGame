@@ -23,7 +23,7 @@ public abstract class Player extends iLifeform implements KeyListener {
 	final double BASE_SPEED = 5;
 	final double BASE_ATTACK_SPEED = 0.7;
 	final double BASE_ATTACK_POWER = 10;
-	final int CORNER_CLIP_BUFFER = 2;
+	final int CORNER_CLIP_BUFFER = 1;
 
 	double hitboxMultiplier = 0.8;
 	int width = SlimeGame.SPRITE_SIZE * SlimeGame.spriteScale;
@@ -103,24 +103,24 @@ public abstract class Player extends iLifeform implements KeyListener {
 			System.out.print(", Wall Size: ");
 			System.out.println(wallSize);
 
-			boolean topWall = (wallY <= lifeFormY + wallSize * 0.4) &&
+			boolean topWall = (wallY <= lifeFormY - wallSize * 1.4) &&
 							  (lifeFormX < wallX + wallSize * 1.4 - CORNER_CLIP_BUFFER) &&
 							  (lifeFormX > wallX - wallSize * 0.4 + CORNER_CLIP_BUFFER);
 
-			boolean bottomWall = (wallY >= lifeFormY - wallSize * 0.4) &&
+			boolean bottomWall = (wallY >= lifeFormY + wallSize * 0.25) &&
 								 (lifeFormX < wallX + wallSize * 1.4 - CORNER_CLIP_BUFFER) &&
-								 (lifeFormX > wallX + CORNER_CLIP_BUFFER);
+								 (lifeFormX > wallX - wallSize * 0.4 + CORNER_CLIP_BUFFER);
 
-			boolean rightWall = (wallX <= lifeFormX - wallSize * 0.4) &&
-								(lifeFormY < wallY + wallSize * 1.4 - CORNER_CLIP_BUFFER) &&
-								(lifeFormY > wallY + CORNER_CLIP_BUFFER);
-
-			boolean leftWall = (wallX >= lifeFormX + wallSize * 0.4) &&
+			boolean rightWall = (wallX >= lifeFormX - wallSize * 0.4) &&
 							   (lifeFormY < wallY + wallSize * 1.4 - CORNER_CLIP_BUFFER) &&
-							   (lifeFormY > wallY + CORNER_CLIP_BUFFER);
+							   (lifeFormY > wallY - wallSize * 0.4 + CORNER_CLIP_BUFFER);
 
-			//boolean rightWall = lifeFormX <= wallX;
-			//boolean leftWall = true;
+			boolean leftWall = (wallX <= lifeFormX - wallSize * 1.4) &&
+							   (lifeFormY < wallY + wallSize * 1.4 - CORNER_CLIP_BUFFER) &&
+							   (lifeFormY > wallY - wallSize * 0.4 + CORNER_CLIP_BUFFER);
+
+			//boolean rightWall = false;
+			//boolean leftWall = false;
 
 			//if wall is top
 			if (topWall)
