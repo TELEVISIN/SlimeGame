@@ -3,6 +3,7 @@ package com.github.hanyaeger.SlimeGame.scenes;
 import com.github.hanyaeger.SlimeGame.SlimeGame;
 import com.github.hanyaeger.SlimeGame.entities.AttackSprite;
 import com.github.hanyaeger.SlimeGame.entities.AttackTimer;
+import com.github.hanyaeger.SlimeGame.entities.HealthText;
 import com.github.hanyaeger.SlimeGame.entities.Paladin;
 import com.github.hanyaeger.SlimeGame.entities.PaladinSprite;
 import com.github.hanyaeger.SlimeGame.entities.Player;
@@ -33,7 +34,6 @@ public class GameLevel extends DynamicScene implements TileMapContainer, MouseBu
     
     private SlimeGame slimeGame;
     private Paladin paladin;
-    private SmallSlime smallSlime;
     private Coordinate2D attackLocation;
     
     private Timer timer;
@@ -51,33 +51,34 @@ public class GameLevel extends DynamicScene implements TileMapContainer, MouseBu
 
         //generate the room first time
         generateRoom();
-
-		paladin = new Paladin(new Coordinate2D(getWidth() / 2, getHeight() / 2), // Coordinate2D coordinate2d
-				slimeGame, // SlimeGame slimeGame
-				100, // int health
-				1, // double speed
-				10, // double attackPower
-				0.7); // double attackSpeed
-		
-		smallSlime = new SmallSlime(new Coordinate2D(getWidth() / 3, getHeight() / 4),
-				slimeGame, normalRoom);
 	}
 
     @Override
     public void setupEntities() {
         // TODO Auto-generated method stub
-    	var healthBar = new TextEntity(
-    	        new Coordinate2D(getWidth() / 2, getHeight() - 75),
-    	        "Health: " + Player.health
-    	    );
-	    healthBar.setAnchorPoint(AnchorPoint.CENTER_CENTER);
-	    healthBar.setFill(Color.RED);
-	    healthBar.setFont(Font.font("Roboto", FontWeight.BOLD, 30));
-	    addEntity(healthBar);
-    	
-    	
+        
+		var healthText = new HealthText(
+		        new Coordinate2D(getWidth() / 2, getHeight() - 75)
+		    );
+		healthText.setAnchorPoint(AnchorPoint.CENTER_CENTER);
+		healthText.setFill(Color.RED);
+		healthText.setFont(Font.font("Roboto", FontWeight.BOLD, 30));
+		healthText.setHealthText(Player.health);
+	
+		paladin = new Paladin(new Coordinate2D(getWidth() / 2, getHeight() / 2), // Coordinate2D coordinate2d
+				slimeGame, // SlimeGame slimeGame
+				healthText,
+				100, // int health
+				1, // double speed
+				10, // double attackPower
+				0.7); // double attackSpeed
+		
+		var smallSlime = new SmallSlime(new Coordinate2D(getWidth() / 3, getHeight() / 4),
+				slimeGame, normalRoom);
+	
+	    addEntity(healthText);
+    	    	
         addEntity(paladin);
-        //addEntity(smallSlime);
     }
     
     @Override
