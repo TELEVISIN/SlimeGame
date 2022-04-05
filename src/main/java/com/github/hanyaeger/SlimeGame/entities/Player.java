@@ -48,6 +48,7 @@ public abstract class Player extends iLifeform implements KeyListener {
 	
 	public Player(Coordinate2D coordinate2d, SlimeGame slimeGame, HealthText healthText, int health, double speed, double attackPower, double atatckSpeed) {
 		super(coordinate2d);
+		this.slimeGame = slimeGame;
 		this.healthText = healthText;
 	}
 
@@ -69,6 +70,11 @@ public abstract class Player extends iLifeform implements KeyListener {
 	
 	private void loseHealth(int healthLoss) {
 		health -= healthLoss;
+		
+		if (health <= 0) {
+			slimeGame.setActiveScene(2);
+		}
+		
 		healthText.setHealthText(health);
 	}
 
