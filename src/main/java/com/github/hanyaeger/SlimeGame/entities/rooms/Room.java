@@ -6,6 +6,7 @@ import com.github.hanyaeger.SlimeGame.entities.obstacles.Door;
 import com.github.hanyaeger.SlimeGame.entities.obstacles.Floor;
 import com.github.hanyaeger.SlimeGame.entities.obstacles.Wall;
 import com.github.hanyaeger.SlimeGame.scenes.GameLevel;
+import com.github.hanyaeger.api.entities.YaegerEntity;
 import com.github.hanyaeger.api.scenes.TileMap;
 
 import java.util.List;
@@ -248,6 +249,23 @@ public abstract class Room extends TileMap {
         return tilemap;
     }
 
+    public void print()
+    {
+        YaegerEntity[][] instanceMap = getInstanceMap();
+
+        //make a print functino to see what the frick the map contains
+        for ( YaegerEntity[] instanceRow : instanceMap)
+        {
+            for ( YaegerEntity instance : instanceRow)
+            {
+                System.out.print(instance.getClass().getName());
+                System.out.print(",  ");
+            }
+
+            //start a new line
+            System.out.println(",");
+        }
+    }
 
     public void updateEnemiesKilled()
     {
