@@ -10,6 +10,7 @@ import com.github.hanyaeger.api.entities.EntitySpawner;
 
 public class SlimeSpawner extends EntitySpawner {
 
+	public int numOfEnemies = 10;
 	public SlimeGame slimeGame;
 	public Room room;
 	public int numOfSlimes = 0;
@@ -27,7 +28,7 @@ public class SlimeSpawner extends EntitySpawner {
 	@Override
 	protected void spawnEntities() {
 		// TODO Auto-generated method stub
-		if (numOfSlimes < 10) {
+		if (numOfSlimes < numOfEnemies) {
 			spawn(new SmallSlime(randomLocation(), slimeGame, room));
 			numOfSlimes += 1;
 			System.out.println("ENEMY SPAWNED");

@@ -63,6 +63,5 @@ public abstract class Enemy extends iLifeform {
 	}
 	
 	public void Move() {
-		
 	}
 }

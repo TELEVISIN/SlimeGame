@@ -33,7 +33,7 @@ import java.util.Set;
 public class GameLevel extends DynamicScene implements TileMapContainer, MouseButtonPressedListener, KeyListener, TimerContainer, EntitySpawnerContainer {
     
     private SlimeGame slimeGame;
-    private Player paladin;
+    private Paladin paladin;
     private Coordinate2D attackLocation;
     
     private Timer timer;
@@ -79,7 +79,6 @@ public class GameLevel extends DynamicScene implements TileMapContainer, MouseBu
 	    addEntity(healthText);
     	    	
         addEntity(paladin);
-        //addEntity(smallSlime);
     }
     
     @Override

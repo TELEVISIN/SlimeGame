@@ -1,9 +1,12 @@
 package com.github.hanyaeger.SlimeGame.entities;
 
+import java.util.Random;
+
 import com.github.hanyaeger.SlimeGame.SlimeGame;
 import com.github.hanyaeger.SlimeGame.entities.rooms.Room;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
+import com.github.hanyaeger.api.UpdateExposer;
 
 public class SmallSlime extends Slime {
 	
@@ -15,11 +18,13 @@ public class SmallSlime extends Slime {
 	final double BASE_ATTACK_SPEED = 0.7;
 	final double BASE_ATTACK_POWER = 10;
 	
+	private double speed = BASE_SPEED - 1;
+	
 	public SmallSlime(Coordinate2D coordinate2d, SlimeGame slimeGame, Room parentRoom) {
 		super(coordinate2d, slimeGame);
 		this.parentRoom = parentRoom;
 	}
-
+	
 	@Override
 	protected void setupEntities() {
 		// TODO Auto-generated method stub
