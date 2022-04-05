@@ -38,12 +38,26 @@ public class BossRoom extends Room{
         //place predefined set of walls
         newTilemap[2][2] = 10;
         newTilemap[2][wallAmountX - 3] = 10;
+
+        newTilemap[2][4] = 10;
+        newTilemap[2][wallAmountX - 5] = 10;
+
+        newTilemap[4][2] = 10;
+        newTilemap[4][wallAmountX - 3] = 10;
+
+        newTilemap[wallAmountY - 5][2] = 10;
+        newTilemap[wallAmountY - 5][wallAmountX - 3] = 10;
+
         newTilemap[wallAmountY - 3][2] = 10;
         newTilemap[wallAmountY - 3][wallAmountX - 3] = 10;
 
+        newTilemap[wallAmountY - 3][4] = 10;
+        newTilemap[wallAmountY - 3][wallAmountX - 5] = 10;
+
+
         //place predefined set of crates
-        newTilemap[wallAmountY / 2][2] = 7;
-        newTilemap[wallAmountY / 2][wallAmountX - 3] = 7;
+        newTilemap[wallAmountY / 2][4] = 7;
+        newTilemap[wallAmountY / 2][wallAmountX - 5] = 7;
 
         return newTilemap;
     }

@@ -30,7 +30,7 @@ public abstract class Room extends TileMap {
     int floorRandomChance;
 
     //public boolean doorsOpen = false;
-    public boolean doorsOpen = true;
+    public boolean doorsOpen = false;
 
 
     //class array to keep track of the entity classes of this tilemap
@@ -282,8 +282,11 @@ public abstract class Room extends TileMap {
     {
         enemiesKilled++;
 
-        //open doors if all enemies have been killed
-        openDoors();
+        //open doors if a minimum of ONE enemy has been killed
+        //this is to compensate for the fact that there is a near 100% chance there will be unkillable enemies spawned
+        if (enemiesKilled > 0) {
+            openDoors();
+        }
     }
 
     private void openDoors()
