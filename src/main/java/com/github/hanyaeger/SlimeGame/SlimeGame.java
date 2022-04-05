@@ -3,6 +3,7 @@ package com.github.hanyaeger.SlimeGame;
 import com.github.hanyaeger.SlimeGame.scenes.DeathScreen;
 import com.github.hanyaeger.SlimeGame.scenes.GameLevel;
 import com.github.hanyaeger.SlimeGame.scenes.StartScreen;
+import com.github.hanyaeger.SlimeGame.scenes.VictoryScreen;
 import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.YaegerGame;
 
@@ -32,5 +33,6 @@ public class SlimeGame extends YaegerGame{
 	    addScene(0, new StartScreen(this));
 	    addScene(1, new GameLevel(this));
 	    addScene(2, new DeathScreen(this));
+	    addScene(3, new VictoryScreen(this));
 	}
 }
