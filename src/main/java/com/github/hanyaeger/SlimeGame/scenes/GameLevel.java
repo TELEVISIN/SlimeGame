@@ -114,7 +114,7 @@ public class GameLevel extends DynamicScene implements TileMapContainer, MouseBu
         //RIGHT MOUSE BUTTON for blocking
         else if (button == MouseButton.SECONDARY) {
             paladin.Block();
-            normalRoom.print();
+            normalRoom.printInstanceMap();
         }
     }
 
