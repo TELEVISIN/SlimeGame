@@ -31,6 +31,7 @@ public abstract class Room extends TileMap {
 
     boolean doorsOpen = false;
 
+
     //class array to keep track of the entity classes of this tilemap
     Class[] entityClassArray = {
             Door.class,
@@ -169,7 +170,10 @@ public abstract class Room extends TileMap {
                         {
                             //door
                             tilemap[rowNr][columnNr] = 3;
-                            System.out.println("Door");
+                            System.out.print("Door, Row: ");
+                            System.out.print(rowNr);
+                            System.out.print(", Column ");
+                            System.out.println(columnNr);
                         }
                         else
                         {
@@ -185,7 +189,10 @@ public abstract class Room extends TileMap {
                         {
                             //door
                             tilemap[rowNr][columnNr] = 14;
-                            System.out.println("Door");
+                            System.out.print("Door, Row: ");
+                            System.out.print(rowNr);
+                            System.out.print(", Column ");
+                            System.out.println(columnNr);
                         }
                         else
                         {
@@ -201,7 +208,10 @@ public abstract class Room extends TileMap {
                         {
                             //door
                             tilemap[rowNr][columnNr] = 5;
-                            System.out.println("Door");
+                            System.out.print("Door, Row: ");
+                            System.out.print(rowNr);
+                            System.out.print(", Column ");
+                            System.out.println(columnNr);
                         }
                         else
                         {
@@ -217,7 +227,10 @@ public abstract class Room extends TileMap {
                         {
                             //door
                             tilemap[rowNr][columnNr] = 12;
-                            System.out.println("Door");
+                            System.out.print("Door, Row: ");
+                            System.out.print(rowNr);
+                            System.out.print(", Column ");
+                            System.out.println(columnNr);
                         }
                         else
                         {
@@ -246,10 +259,11 @@ public abstract class Room extends TileMap {
             }
         }
 
+        printTileMap(tilemap);
         return tilemap;
     }
 
-    public void print()
+    public void printInstanceMap()
     {
         YaegerEntity[][] instanceMap = getInstanceMap();
 
@@ -259,6 +273,21 @@ public abstract class Room extends TileMap {
             for ( YaegerEntity instance : instanceRow)
             {
                 System.out.print(instance.getClass().getSimpleName());
+                System.out.print(",  ");
+            }
+
+            //start a new line
+            System.out.println();
+        }
+    }
+
+    public void printTileMap(int[][] tilemap) {
+        YaegerEntity[][] instanceMap = getInstanceMap();
+
+        //make a print functino to see what  the map contains
+        for (int[] tileRow : tilemap) {
+            for (int tile : tileRow) {
+                System.out.print(tile);
                 System.out.print(",  ");
             }
 
