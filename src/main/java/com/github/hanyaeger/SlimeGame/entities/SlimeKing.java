@@ -6,15 +6,18 @@ import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
 
 public class SlimeKing extends Slime {
-	public SlimeKing(Coordinate2D coordinate2d, SlimeGame slimeGame, Room parentRoom) {
-		super(coordinate2d, slimeGame);
-		// TODO Auto-generated constructor stub
-		this.parentRoom = parentRoom;
-	}
+
 	public int KingScaleSize = 2;
 	
 	int width = SlimeGame.SPRITE_SIZE * SlimeGame.spriteScale * KingScaleSize;
 	int height = SlimeGame.SPRITE_SIZE * SlimeGame.spriteScale * KingScaleSize;
+	
+	public SlimeKing(Coordinate2D coordinate2d, SlimeGame slimeGame, Room parentRoom) {
+		super(coordinate2d, slimeGame);
+		this.parentRoom = parentRoom;
+		
+		health = BASE_HEALTH * 5;
+	}
 	
 	@Override
 	protected void setupEntities() {

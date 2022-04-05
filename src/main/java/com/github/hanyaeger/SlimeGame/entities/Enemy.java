@@ -9,6 +9,7 @@ import com.github.hanyaeger.api.entities.Collider;
 public abstract class Enemy extends iLifeform {
 	public Enemy(Coordinate2D coordinate2d, SlimeGame slimeGame) {
 		super(coordinate2d);
+		this.slimeGame = slimeGame;
 		// TODO Auto-generated constructor stub
 	}
 	final int BASE_HEALTH = 100;
@@ -16,7 +17,7 @@ public abstract class Enemy extends iLifeform {
 	final double BASE_ATTACK_SPEED = 0.7;
 	final double BASE_ATTACK_POWER = 10;
 	
-	int health = BASE_HEALTH;
+	int health;
 	double speed = BASE_SPEED;
 	double attackPower = BASE_ATTACK_POWER;
 	double attackSpeed = BASE_ATTACK_SPEED;
@@ -47,13 +48,18 @@ public abstract class Enemy extends iLifeform {
 		if (isAlive) {
 			health -= attackSprite.attackPower;
 			System.out.println("ENEMY HIT");
+			System.out.println(health);
 
 			//if health hits or drops below zero, kill
 			if (health <= 0) {
-				parentRoom.updateEnemiesKilled();
-				isAlive = false;
-				System.out.println("ENEMY KILLED");
-				remove();
+				if (this instanceof SlimeKing) {
+					slimeGame.setActiveScene(3);
+				} else {
+					parentRoom.updateEnemiesKilled();
+					isAlive = false;
+					System.out.println("ENEMY KILLED");
+					remove();
+				}	
 			}
 		}
 	}

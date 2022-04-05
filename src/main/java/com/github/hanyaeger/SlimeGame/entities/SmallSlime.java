@@ -10,19 +10,16 @@ import com.github.hanyaeger.api.UpdateExposer;
 
 public class SmallSlime extends Slime {
 	
+	private double speed = BASE_SPEED - 1;
+	
 	int width = SlimeGame.SPRITE_SIZE * SlimeGame.spriteScale;
 	int height = SlimeGame.SPRITE_SIZE * SlimeGame.spriteScale;
-
-	final int BASE_HEALTH = 100;
-	final double BASE_SPEED = 5;
-	final double BASE_ATTACK_SPEED = 0.7;
-	final double BASE_ATTACK_POWER = 10;
-	
-	private double speed = BASE_SPEED - 1;
 	
 	public SmallSlime(Coordinate2D coordinate2d, SlimeGame slimeGame, Room parentRoom) {
 		super(coordinate2d, slimeGame);
 		this.parentRoom = parentRoom;
+		
+		health = BASE_HEALTH;
 	}
 	
 	@Override
