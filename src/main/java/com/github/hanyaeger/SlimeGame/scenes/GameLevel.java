@@ -63,7 +63,6 @@ public class GameLevel extends DynamicScene implements TileMapContainer, MouseBu
 		healthText.setAnchorPoint(AnchorPoint.CENTER_CENTER);
 		healthText.setFill(Color.RED);
 		healthText.setFont(Font.font("Roboto", FontWeight.BOLD, 30));
-		healthText.setHealthText(Player.health);
 	
 		paladin = new Paladin(new Coordinate2D(getWidth() / 2, getHeight() / 2), // Coordinate2D coordinate2d
 				slimeGame, // SlimeGame slimeGame

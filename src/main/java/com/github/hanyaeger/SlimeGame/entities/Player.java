@@ -21,7 +21,7 @@ import javafx.scene.input.MouseButton;
  */
 
 public abstract class Player extends iLifeform implements KeyListener {
-	final static int BASE_HEALTH = 200;
+	final static int BASE_HEALTH = 100;
 	final double BASE_SPEED = 5;
 	final double BASE_ATTACK_SPEED = 0.7;
 	final double BASE_ATTACK_POWER = 10;
@@ -31,7 +31,7 @@ public abstract class Player extends iLifeform implements KeyListener {
 	int width = SlimeGame.SPRITE_SIZE * SlimeGame.spriteScale;
 	int height = SlimeGame.SPRITE_SIZE * SlimeGame.spriteScale;
 	
-	private int health = BASE_HEALTH;
+	private int health;
 	double speed = BASE_SPEED;
 	double attackPower = BASE_ATTACK_POWER;
 	double attackSpeed = BASE_ATTACK_SPEED;
@@ -50,6 +50,8 @@ public abstract class Player extends iLifeform implements KeyListener {
 		super(coordinate2d);
 		this.slimeGame = slimeGame;
 		this.healthText = healthText;
+		
+		setHealth(BASE_HEALTH);
 	}
 
 
@@ -64,17 +66,26 @@ public abstract class Player extends iLifeform implements KeyListener {
 		Move();
 		
 		if (pressedKeys.contains(KeyCode.Q)) {
-			loseHealth(5);
+			changeHealth(-5);
 		}
 	}
 	
-	private void loseHealth(int healthLoss) {
-		health -= healthLoss;
+	public void setHealth(int health) {
+		this.health = health;
+		updateHealthText();
+	}
+	
+	private void changeHealth(int healthLoss) {
+		health += healthLoss;
 		
 		if (health <= 0) {
 			slimeGame.setActiveScene(2);
 		}
 		
+		updateHealthText();
+	}
+	
+	private void updateHealthText() {
 		healthText.setHealthText(health);
 	}
 
@@ -89,7 +100,7 @@ public abstract class Player extends iLifeform implements KeyListener {
 		//if colliding with enemy, take damage
 		if (collidingObject instanceof Enemy) {
 			System.out.println("Enemy");
-			loseHealth(5);
+			changeHealth(-5);
 
 		}
 
