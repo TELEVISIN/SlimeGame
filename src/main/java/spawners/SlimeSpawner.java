@@ -16,10 +16,11 @@ public class SlimeSpawner extends EntitySpawner {
 	private final double sceneWidth;
 	private final double sceneHeight;
 
-	public SlimeSpawner(double sceneWidth, double sceneHeight) {
+	public SlimeSpawner(double sceneWidth, double sceneHeight, Room roomType) {
 		super(100);
 		this.sceneWidth = sceneWidth;
 		this.sceneHeight = sceneHeight;
+		this.room = roomType;
 		// TODO Auto-generated constructor stub
 	}
 
@@ -29,21 +30,14 @@ public class SlimeSpawner extends EntitySpawner {
 		if (numOfSlimes < 10) {
 			spawn(new SmallSlime(randomLocation(), slimeGame, room));
 			numOfSlimes += 1;
-
 			System.out.println("ENEMY SPAWNED");
 		}
 	}
 	
 	private Coordinate2D randomLocation() {
 		double x = new Random().nextInt((int) sceneWidth);
-
-		System.out.print("X: ");
-		System.out.print(x);
-		System.out.print(", Y: ");
-		System.out.print(sceneHeight / 2);
-		System.out.print(", ");
-
-		return new Coordinate2D(x, sceneHeight / 2);
+		double y = new Random().nextInt((int) sceneHeight);
+		return new Coordinate2D(x, y);
 	}
 
 }

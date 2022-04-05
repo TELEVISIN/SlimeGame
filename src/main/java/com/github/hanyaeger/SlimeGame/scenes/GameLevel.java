@@ -153,6 +153,6 @@ public class GameLevel extends DynamicScene implements TileMapContainer, MouseBu
 	@Override
 	public void setupEntitySpawners() {
 		// TODO Auto-generated method stub
-		addEntitySpawner(new SlimeSpawner(getWidth(), getHeight()));
+		addEntitySpawner(new SlimeSpawner(getWidth(), getHeight(), normalRoom));
 	}
 }
