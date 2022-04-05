@@ -21,19 +21,11 @@ public class StartScreen extends StaticScene {
 
 	@Override
 	public void setupScene() {
-	    setBackgroundImage("sprites/swordfish.png");
+	    setBackgroundImage("sprites/TitleScreen.png");
 	}
 
 	@Override
 	public void setupEntities(){
-	    var slimeGameText = new TextEntity(
-	        new Coordinate2D(getWidth() / 2, getHeight() / 4),
-	        "Tomb Of The Slime King"
-	    );
-	    slimeGameText.setAnchorPoint(AnchorPoint.CENTER_CENTER);
-	    slimeGameText.setFill(Color.YELLOW);
-	    slimeGameText.setFont(Font.font("Lucida Calligraphy", FontWeight.SEMI_BOLD, 80));
-	    addEntity(slimeGameText);
 	    
 	    addEntity(new StartButton(new Coordinate2D(getWidth() / 2, getHeight() / 10 * 6), slimeGame));
 	}
