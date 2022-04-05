@@ -96,8 +96,6 @@ public abstract class Player extends iLifeform implements KeyListener {
 
 	public void onCollision(Collider collidingObject) {
 		//if colliding with door, open it on button press
-		System.out.println(collidingObject.getClass().getSimpleName());
-
 		if (collidingObject instanceof Door) {
 			//if doors are open generate new room
 			if (parentRoom.doorsOpen) {
@@ -175,7 +173,6 @@ public abstract class Player extends iLifeform implements KeyListener {
 
 			//if wall is top
 			if (topWall) {
-				System.out.println("TOP WALL");
 				if (leftKey && upKey) {
 					//go right if right is also pressed
 					setMotion(speed / 2, 270d);
@@ -193,7 +190,6 @@ public abstract class Player extends iLifeform implements KeyListener {
 
 			//if wall is bottom
 			if (bottomWall) {
-				System.out.println("BOTTOM WALL");
 				if (leftKey && downKey) {
 					//go right if right is also pressed
 					setMotion(speed / 2, 270d);
@@ -211,7 +207,6 @@ public abstract class Player extends iLifeform implements KeyListener {
 
 			//if wall is left
 			if (leftWall) {
-				System.out.println("LEFT WALL");
 				if (downKey && leftKey) {
 					//go down if down is also pressed
 					setMotion(speed / 2, 0d);
@@ -229,7 +224,6 @@ public abstract class Player extends iLifeform implements KeyListener {
 
 			//if wall is right
 			if (rightWall) {
-				System.out.println("RIGHT WALL");
 				if (downKey && rightKey) {
 					//go down if down is also pressed
 					setMotion(speed / 2, 0d);
@@ -249,7 +243,6 @@ public abstract class Player extends iLifeform implements KeyListener {
 
 			//if player is at top of room
 			if (topEdge) {
-				System.out.println("Top Edge");
 				if (leftKey && upKey) {
 					//go right if right is also pressed
 					setMotion(speed / 2, 270d);
@@ -267,7 +260,6 @@ public abstract class Player extends iLifeform implements KeyListener {
 
 			//if player is at bottom of room
 			if (bottomEdge) {
-				System.out.println("Bottom Edge");
 				if (leftKey && downKey) {
 					//go right if right is also pressed
 					setMotion(speed / 2, 270d);
@@ -287,7 +279,6 @@ public abstract class Player extends iLifeform implements KeyListener {
 			if (leftEdge) {
 				//if wall is left
 				if (leftWall) {
-					System.out.println("Left Edge");
 					if (downKey && leftKey) {
 						//go down if down is also pressed
 						setMotion(speed / 2, 0d);
@@ -308,7 +299,6 @@ public abstract class Player extends iLifeform implements KeyListener {
 			if (rightEdge) {
 				//if wall is right
 				if (rightWall) {
-					System.out.println("Right Edge");
 					if (downKey && rightKey) {
 						//go down if down is also pressed
 						setMotion(speed / 2, 0d);

@@ -36,7 +36,6 @@ public class SlimeSpawner extends EntitySpawner {
 		} else if (numOfSlimes < numOfEnemies && !spawnKing) {
 			spawn(new SmallSlime(randomLocation(), slimeGame, room));
 			numOfSlimes += 1;
-			System.out.println("ENEMY SPAWNED");
 		}
 	}
 	

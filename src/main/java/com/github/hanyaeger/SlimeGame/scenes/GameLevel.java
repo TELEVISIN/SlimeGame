@@ -28,14 +28,20 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import spawners.SlimeSpawner;
 
+import java.util.Random;
 import java.util.Set;
 
 public class GameLevel extends DynamicScene implements TileMapContainer, MouseButtonPressedListener, KeyListener, TimerContainer, EntitySpawnerContainer {
     
     private SlimeGame slimeGame;
     private Paladin paladin;
-    private SlimeKing slimeKing;
     private Coordinate2D attackLocation;
+
+	private SlimeKing slimeKing;
+	private int slimeKingChanceThreshold = 20;
+	private Random random = new Random();
+	private int slimeKingChance;
+
     
     private Timer timer;
 
@@ -70,8 +76,7 @@ public class GameLevel extends DynamicScene implements TileMapContainer, MouseBu
 				healthText,
 				normalRoom,
 				this);
-		
-		slimeKing = new SlimeKing(new Coordinate2D(512, 128), slimeGame, normalRoom);
+
 		
 		var smallSlime = new SmallSlime(new Coordinate2D(getWidth() / 3, getHeight() / 4),
 				slimeGame, normalRoom);
@@ -79,8 +84,22 @@ public class GameLevel extends DynamicScene implements TileMapContainer, MouseBu
 	    addEntity(healthText);
     	    	
         addEntity(paladin);
-        //addEntity(slimeKing);
+
+		addSlimeKing();
     }
+
+	private void addSlimeKing()
+	{
+		slimeKingChance = random.nextInt(100);
+		System.out.println(slimeKingChance);
+
+		//spawn slime king on chance
+		if (slimeKingChance <= slimeKingChanceThreshold) {
+			slimeKing = new SlimeKing(new Coordinate2D(512, 128), slimeGame, normalRoom);
+			addEntity(slimeKing);
+			System.out.println("KING SLIME APPROACHES");
+		}
+	}
     
     @Override
     public void onMouseButtonPressed(MouseButton button, Coordinate2D coordinate2d) {
@@ -115,7 +134,6 @@ public class GameLevel extends DynamicScene implements TileMapContainer, MouseBu
         //RIGHT MOUSE BUTTON for blocking
         else if (button == MouseButton.SECONDARY) {
             paladin.Block();
-            normalRoom.printInstanceMap();
         }
     }
 
@@ -137,8 +155,6 @@ public class GameLevel extends DynamicScene implements TileMapContainer, MouseBu
 	{
 		//clear the level and run setup entities again
 		slimeGame.setActiveScene(1);
-
-		System.out.println("NEW ROOM SET");
 	}
 
     @Override

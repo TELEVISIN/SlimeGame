@@ -171,10 +171,6 @@ public abstract class Room extends TileMap {
                         {
                             //door
                             tilemap[rowNr][columnNr] = 3;
-                            System.out.print("Door, Row: ");
-                            System.out.print(rowNr);
-                            System.out.print(", Column ");
-                            System.out.println(columnNr);
                         }
                         else
                         {
@@ -190,10 +186,6 @@ public abstract class Room extends TileMap {
                         {
                             //door
                             tilemap[rowNr][columnNr] = 14;
-                            System.out.print("Door, Row: ");
-                            System.out.print(rowNr);
-                            System.out.print(", Column ");
-                            System.out.println(columnNr);
                         }
                         else
                         {
@@ -209,10 +201,6 @@ public abstract class Room extends TileMap {
                         {
                             //door
                             tilemap[rowNr][columnNr] = 5;
-                            System.out.print("Door, Row: ");
-                            System.out.print(rowNr);
-                            System.out.print(", Column ");
-                            System.out.println(columnNr);
                         }
                         else
                         {
@@ -228,10 +216,6 @@ public abstract class Room extends TileMap {
                         {
                             //door
                             tilemap[rowNr][columnNr] = 12;
-                            System.out.print("Door, Row: ");
-                            System.out.print(rowNr);
-                            System.out.print(", Column ");
-                            System.out.println(columnNr);
                         }
                         else
                         {
@@ -260,7 +244,6 @@ public abstract class Room extends TileMap {
             }
         }
 
-        printTileMap(tilemap);
         return tilemap;
     }
 
