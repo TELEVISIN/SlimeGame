@@ -6,7 +6,7 @@ import com.github.hanyaeger.api.entities.Collided;
 import com.github.hanyaeger.api.entities.Collider;
 import com.github.hanyaeger.api.entities.impl.RectangleEntity;
 
-public class LifeformHitbox extends RectangleEntity implements Collided{
+public class LifeformHitbox extends RectangleEntity implements Collided, Collider{
 	
 	iLifeform ilifeform;
 	
@@ -22,8 +22,6 @@ public class LifeformHitbox extends RectangleEntity implements Collided{
 	public void onCollision(Collider collidingObject) {
 		// TODO Auto-generated method stub
 		ilifeform.onCollision(collidingObject);
-
-		//wall collision
 
 	}
 }

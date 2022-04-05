@@ -33,6 +33,12 @@ public abstract class Enemy extends iLifeform {
 		{
 			TakeDamage((AttackSprite) collidingObject);
 		}
+
+		//if colliding with player
+		if (collidingObject instanceof Player)
+		{
+			System.out.println("Oh no!!! Scawy Pawadin be touching meeee ONO!");
+		}
 	}
 
 	public void TakeDamage(AttackSprite attackSprite)
@@ -49,7 +55,6 @@ public abstract class Enemy extends iLifeform {
 				System.out.println("ENEMY KILLED");
 			}
 		}
-
 	}
 	
 	public void Attack() {
@@ -57,10 +62,6 @@ public abstract class Enemy extends iLifeform {
 	}
 	
 	public void Move() {
-		
-	}
-	
-	public void updateHealth( ) {
 		
 	}
 }

@@ -28,6 +28,8 @@ public abstract class Room extends TileMap {
     int floorRandomChanceMaximum = 10;
     int floorRandomChance;
 
+    boolean doorsOpen = false;
+
     //class array to keep track of the entity classes of this tilemap
     Class[] entityClassArray = {
             Door.class,
@@ -72,10 +74,6 @@ public abstract class Room extends TileMap {
         //set amount of wall x and y
         wallAmountX = SlimeGame.roomTileColumns;
         wallAmountY = SlimeGame.roomTileRows;
-//        wallAmountX = (int) (gameLevel.getWidth() / SPRITE_SIZE);
-//        wallAmountY = (int) (gameLevel.getHeight() / SPRITE_SIZE);
-
-        createTileMap();
     }
 
     public void setupEntities()
@@ -170,6 +168,7 @@ public abstract class Room extends TileMap {
                         {
                             //door
                             tilemap[rowNr][columnNr] = 3;
+                            System.out.println("Door");
                         }
                         else
                         {
@@ -185,6 +184,7 @@ public abstract class Room extends TileMap {
                         {
                             //door
                             tilemap[rowNr][columnNr] = 14;
+                            System.out.println("Door");
                         }
                         else
                         {
@@ -195,12 +195,12 @@ public abstract class Room extends TileMap {
                     //left wall
                     else if (columnNr == 0)
                     {
-
                         //check if wall needs to be door
                         if(rowNr == wallAmountY / 2)
                         {
                             //door
                             tilemap[rowNr][columnNr] = 5;
+                            System.out.println("Door");
                         }
                         else
                         {
@@ -216,6 +216,7 @@ public abstract class Room extends TileMap {
                         {
                             //door
                             tilemap[rowNr][columnNr] = 12;
+                            System.out.println("Door");
                         }
                         else
                         {
@@ -251,6 +252,14 @@ public abstract class Room extends TileMap {
     public void updateEnemiesKilled()
     {
         enemiesKilled++;
+
+        //open doors if all enemies have been killed
+        openDoors();
+    }
+
+    private void openDoors()
+    {
+        doorsOpen = true;
     }
 
 

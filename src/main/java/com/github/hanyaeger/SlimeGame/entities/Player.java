@@ -4,8 +4,10 @@ import java.util.Set;
 
 import com.github.hanyaeger.SlimeGame.SlimeGame;
 import com.github.hanyaeger.SlimeGame.entities.obstacles.Crate;
+import com.github.hanyaeger.SlimeGame.entities.obstacles.Door;
 import com.github.hanyaeger.SlimeGame.entities.obstacles.Wall;
 import com.github.hanyaeger.api.Coordinate2D;
+import com.github.hanyaeger.api.entities.Collided;
 import com.github.hanyaeger.api.entities.Collider;
 import com.github.hanyaeger.api.userinput.KeyListener;
 
@@ -60,122 +62,199 @@ public abstract class Player extends iLifeform implements KeyListener {
 	}
 
 	public void onCollision(Collider collidingObject) {
-		if (collidingObject instanceof Enemy) {
-			System.out.println("Enemy");
-			health -= 5;
-			
-		}
+		//if colliding with door, open it on button press
 
-		//check wall collision
-		checkWallCollision(collidingObject);
+		System.out.println(collidingObject.getClass());
+
+//		if (collidingObject instanceof Door) {
+//			System.out.println("Door");
+//			health -= 5;
+//
+//		}
+//
+//		//if colliding with enemy, take damage
+//		if (collidingObject instanceof Enemy) {
+//			System.out.println("Enemy");
+//			health -= 5;
+//
+//		}
+//
+//		//if colliding with wall or crate check wall collision
+//		if (collidingObject instanceof Wall || collidingObject instanceof Crate) {
+//			checkWallCollision(collidingObject);
+//		}
 	}
 
-	public void checkWallCollision(Collider collidingObject)
-	{
-		if (collidingObject instanceof Wall || collidingObject instanceof Crate)
-		{
-			double wallX;
-			double wallY;
-			double wallSize = SlimeGame.SPRITE_SIZE * SlimeGame.spriteScale;
+	public void checkWallCollision(Collider collidingObject) {
 
-			double playerHitboxSize = width * hitboxMultiplier;
+		double wallX;
+		double wallY;
+		double wallSize = SlimeGame.SPRITE_SIZE * SlimeGame.spriteScale;
 
-			int boundryBuffer = SlimeGame.SPRITE_SIZE * SlimeGame.spriteScale;
-			double windowHeight = this.getSceneHeight();
-			double windowWidth = this.getSceneWidth();
+		double playerHitboxSize = width * hitboxMultiplier;
 
-			if (collidingObject instanceof Wall)
-			{
-				wallX = ((Wall) collidingObject).getAnchorLocation().getX();
-				wallY = ((Wall) collidingObject).getAnchorLocation().getY();
-			}
-			else
-			{
-				if (((Crate)collidingObject).isDestroyed)
-				{
-					//if crate is destroyed, cancel collision
-					return;
-				}
+		int boundryBuffer = SlimeGame.SPRITE_SIZE * SlimeGame.spriteScale;
+		double windowHeight = this.getSceneHeight();
+		double windowWidth = this.getSceneWidth();
 
-				wallX = ((Crate) collidingObject).getAnchorLocation().getX();
-				wallY = ((Crate) collidingObject).getAnchorLocation().getY();
+		if (collidingObject instanceof Wall) {
+			wallX = ((Wall) collidingObject).getAnchorLocation().getX();
+			wallY = ((Wall) collidingObject).getAnchorLocation().getY();
+		} else {
+			if (((Crate) collidingObject).isDestroyed) {
+				//if crate is destroyed, cancel collision
+				return;
 			}
 
+			wallX = ((Crate) collidingObject).getAnchorLocation().getX();
+			wallY = ((Crate) collidingObject).getAnchorLocation().getY();
+		}
 
-			double lifeFormX = this.getLocationInScene().getX();
-			double lifeFormY = this.getLocationInScene().getY();
+
+		double lifeFormX = this.getLocationInScene().getX();
+		double lifeFormY = this.getLocationInScene().getY();
 
 
-			boolean topWall = (wallY <= lifeFormY - wallSize * 1.4) &&
-							(lifeFormX < wallX + wallSize * 1.4 - CORNER_CLIP_BUFFER) &&
-							(lifeFormX > wallX - wallSize * 0.4 + CORNER_CLIP_BUFFER);
+		boolean topWall = (wallY <= lifeFormY - wallSize * 1.4) &&
+				(lifeFormX < wallX + wallSize * 1.4 - CORNER_CLIP_BUFFER) &&
+				(lifeFormX > wallX - wallSize * 0.4 + CORNER_CLIP_BUFFER);
 
-			boolean bottomWall = (wallY >= lifeFormY + wallSize * 0.24) &&
-							(lifeFormX < wallX + wallSize * 1.4 - CORNER_CLIP_BUFFER) &&
-							(lifeFormX > wallX - wallSize * 0.4 + CORNER_CLIP_BUFFER);
+		boolean bottomWall = (wallY >= lifeFormY + wallSize * 0.24) &&
+				(lifeFormX < wallX + wallSize * 1.4 - CORNER_CLIP_BUFFER) &&
+				(lifeFormX > wallX - wallSize * 0.4 + CORNER_CLIP_BUFFER);
 
-			boolean rightWall = (wallX >= lifeFormX + wallSize * 0.24) &&
-							(lifeFormY < wallY + wallSize * 1.4 - CORNER_CLIP_BUFFER) &&
-							(lifeFormY > wallY - wallSize * 0.4 + CORNER_CLIP_BUFFER);
+		boolean rightWall = (wallX >= lifeFormX + wallSize * 0.24) &&
+				(lifeFormY < wallY + wallSize * 1.4 - CORNER_CLIP_BUFFER) &&
+				(lifeFormY > wallY - wallSize * 0.4 + CORNER_CLIP_BUFFER);
 
-			boolean leftWall = (wallX <= lifeFormX - wallSize * 1.4) &&
-							(lifeFormY < wallY + wallSize * 1.4 - CORNER_CLIP_BUFFER) &&
-							(lifeFormY > wallY - wallSize * 0.4 + CORNER_CLIP_BUFFER);
+		boolean leftWall = (wallX <= lifeFormX - wallSize * 1.4) &&
+				(lifeFormY < wallY + wallSize * 1.4 - CORNER_CLIP_BUFFER) &&
+				(lifeFormY > wallY - wallSize * 0.4 + CORNER_CLIP_BUFFER);
 
-			boolean topEdge = lifeFormY - playerHitboxSize * 0.6 <= boundryBuffer;
-			boolean bottomEdge = lifeFormY + playerHitboxSize * 0.6 >= windowHeight - boundryBuffer;
-			boolean leftEdge = lifeFormX - playerHitboxSize * 0.6 <= boundryBuffer;
-			boolean rightEdge = lifeFormX + playerHitboxSize * 0.6 >= windowWidth - boundryBuffer;
+		boolean topEdge = lifeFormY - playerHitboxSize * 0.6 <= boundryBuffer;
+		boolean bottomEdge = lifeFormY + playerHitboxSize * 0.6 >= windowHeight - boundryBuffer;
+		boolean leftEdge = lifeFormX - playerHitboxSize * 0.6 <= boundryBuffer;
+		boolean rightEdge = lifeFormX + playerHitboxSize * 0.6 >= windowWidth - boundryBuffer;
 
-			//boolean rightEdge = false;
-			//boolean leftEdge = false;
 
-			System.out.print(lifeFormY - playerHitboxSize * 0.6 - CORNER_CLIP_BUFFER );
-			System.out.print(", buffer: ");
-			System.out.println(boundryBuffer);
+		//check if lifeform is not at edge of the room
+		if (!topEdge && !bottomEdge && !leftEdge && !rightEdge) {
 
-			//check if lifeform is not at edge of the room
-			if (!topEdge && !bottomEdge && !leftEdge && !rightEdge) {
-
-				//if wall is top
-				if (topWall) {
-					System.out.println("TOP WALL");
-					if (leftKey && upKey) {
-						//go right if right is also pressed
-						setMotion(speed / 2, 270d);
-					} else if (upKey && rightKey) {
-						//go left if left is also pressed
-						setMotion(speed / 2, 90d);
-					} else if (upKey) {
-						//stop the up motion
-						setSpeed(0);
-					}
-
-					//soft block up movement
-					canMoveUp = false;
+			//if wall is top
+			if (topWall) {
+				System.out.println("TOP WALL");
+				if (leftKey && upKey) {
+					//go right if right is also pressed
+					setMotion(speed / 2, 270d);
+				} else if (upKey && rightKey) {
+					//go left if left is also pressed
+					setMotion(speed / 2, 90d);
+				} else if (upKey) {
+					//stop the up motion
+					setSpeed(0);
 				}
 
-				//if wall is bottom
-				if (bottomWall) {
-					System.out.println("BOTTOM WALL");
-					if (leftKey && downKey) {
-						//go right if right is also pressed
-						setMotion(speed / 2, 270d);
-					} else if (rightKey && downKey) {
-						//go left if left is also pressed
-						setMotion(speed / 2, 90d);
-					} else if (downKey) {
-						//stop the up motion
-						setSpeed(0);
-					}
+				//soft block up movement
+				canMoveUp = false;
+			}
 
-					//soft block up movement
-					canMoveDown = false;
+			//if wall is bottom
+			if (bottomWall) {
+				System.out.println("BOTTOM WALL");
+				if (leftKey && downKey) {
+					//go right if right is also pressed
+					setMotion(speed / 2, 270d);
+				} else if (rightKey && downKey) {
+					//go left if left is also pressed
+					setMotion(speed / 2, 90d);
+				} else if (downKey) {
+					//stop the up motion
+					setSpeed(0);
 				}
 
+				//soft block up movement
+				canMoveDown = false;
+			}
+
+			//if wall is left
+			if (leftWall) {
+				System.out.println("LEFT WALL");
+				if (downKey && leftKey) {
+					//go down if down is also pressed
+					setMotion(speed / 2, 0d);
+				} else if (upKey && leftKey) {
+					//go left if left is also pressed
+					setMotion(speed / 2, 180d);
+				} else if (leftKey) {
+					//stop the up motion
+					setSpeed(0);
+				}
+
+				//soft block up movement
+				canMoveLeft = false;
+			}
+
+			//if wall is right
+			if (rightWall) {
+				System.out.println("RIGHT WALL");
+				if (downKey && rightKey) {
+					//go down if down is also pressed
+					setMotion(speed / 2, 0d);
+				} else if (upKey && rightKey) {
+					//go up if up is also pressed
+					setMotion(speed / 2, 180d);
+				} else if (rightKey) {
+					//stop the up motion
+					setSpeed(0);
+				}
+
+				//soft block up movement
+				canMoveRight = false;
+			}
+		} else {
+			//block movement and don't check for other walls if lifeform is at an edge
+
+			//if player is at top of room
+			if (topEdge) {
+				System.out.println("Top Edge");
+				if (leftKey && upKey) {
+					//go right if right is also pressed
+					setMotion(speed / 2, 270d);
+				} else if (upKey && rightKey) {
+					//go left if left is also pressed
+					setMotion(speed / 2, 90d);
+				} else if (upKey) {
+					//stop the up motion
+					setSpeed(0);
+				}
+
+				//soft block up movement
+				canMoveUp = false;
+			}
+
+			//if player is at bottom of room
+			if (bottomEdge) {
+				System.out.println("Bottom Edge");
+				if (leftKey && downKey) {
+					//go right if right is also pressed
+					setMotion(speed / 2, 270d);
+				} else if (rightKey && downKey) {
+					//go left if left is also pressed
+					setMotion(speed / 2, 90d);
+				} else if (downKey) {
+					//stop the up motion
+					setSpeed(0);
+				}
+
+				//soft block up movement
+				canMoveDown = false;
+			}
+
+			//if player is at left of room
+			if (leftEdge) {
 				//if wall is left
 				if (leftWall) {
-					System.out.println("LEFT WALL");
+					System.out.println("Left Edge");
 					if (downKey && leftKey) {
 						//go down if down is also pressed
 						setMotion(speed / 2, 0d);
@@ -190,10 +269,13 @@ public abstract class Player extends iLifeform implements KeyListener {
 					//soft block up movement
 					canMoveLeft = false;
 				}
+			}
 
+			//if player is at right of room
+			if (rightEdge) {
 				//if wall is right
 				if (rightWall) {
-					System.out.println("RIGHT WALL");
+					System.out.println("Right Edge");
 					if (downKey && rightKey) {
 						//go down if down is also pressed
 						setMotion(speed / 2, 0d);
@@ -209,93 +291,8 @@ public abstract class Player extends iLifeform implements KeyListener {
 					canMoveRight = false;
 				}
 			}
-			else
-			{
-				//block movement and don't check for other walls if lifeform is at an edge
-
-				//if player is at top of room
-				if (topEdge)
-				{
-					System.out.println("Top Edge");
-					if (leftKey && upKey) {
-						//go right if right is also pressed
-						setMotion(speed / 2, 270d);
-					} else if (upKey && rightKey) {
-						//go left if left is also pressed
-						setMotion(speed / 2, 90d);
-					} else if (upKey) {
-						//stop the up motion
-						setSpeed(0);
-					}
-
-					//soft block up movement
-					canMoveUp = false;
-				}
-
-				//if player is at bottom of room
-				if (bottomEdge)
-				{
-					System.out.println("Bottom Edge");
-					if (leftKey && downKey) {
-						//go right if right is also pressed
-						setMotion(speed / 2, 270d);
-					} else if (rightKey && downKey) {
-						//go left if left is also pressed
-						setMotion(speed / 2, 90d);
-					} else if (downKey) {
-						//stop the up motion
-						setSpeed(0);
-					}
-
-					//soft block up movement
-					canMoveDown = false;
-				}
-
-				//if player is at left of room
-				if (leftEdge)
-				{
-					//if wall is left
-					if (leftWall) {
-						System.out.println("Left Edge");
-						if (downKey && leftKey) {
-							//go down if down is also pressed
-							setMotion(speed / 2, 0d);
-						} else if (upKey && leftKey) {
-							//go left if left is also pressed
-							setMotion(speed / 2, 180d);
-						} else if (leftKey) {
-							//stop the up motion
-							setSpeed(0);
-						}
-
-						//soft block up movement
-						canMoveLeft = false;
-					}
-				}
-
-				//if player is at right of room
-				if (rightEdge)
-				{
-					//if wall is right
-					if (rightWall) {
-						System.out.println("Right Edge");
-						if (downKey && rightKey) {
-							//go down if down is also pressed
-							setMotion(speed / 2, 0d);
-						} else if (upKey && rightKey) {
-							//go up if up is also pressed
-							setMotion(speed / 2, 180d);
-						} else if (rightKey) {
-							//stop the up motion
-							setSpeed(0);
-						}
-
-						//soft block up movement
-						canMoveRight = false;
-					}
-				}
-			}
 		}
+
 	}
 
 
