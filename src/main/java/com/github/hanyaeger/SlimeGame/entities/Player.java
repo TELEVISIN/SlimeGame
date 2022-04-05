@@ -64,8 +64,6 @@ public abstract class Player extends iLifeform implements KeyListener {
 	public void onCollision(Collider collidingObject) {
 		//if colliding with door, open it on button press
 
-		System.out.println(collidingObject.getClass());
-
 		if (collidingObject instanceof Door) {
 			System.out.println("Door");
 

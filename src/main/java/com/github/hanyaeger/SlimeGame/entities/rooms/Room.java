@@ -253,17 +253,17 @@ public abstract class Room extends TileMap {
     {
         YaegerEntity[][] instanceMap = getInstanceMap();
 
-        //make a print functino to see what the frick the map contains
+        //make a print functino to see what  the map contains
         for ( YaegerEntity[] instanceRow : instanceMap)
         {
             for ( YaegerEntity instance : instanceRow)
             {
-                System.out.print(instance.getClass().getName());
+                System.out.print(instance.getClass().getSimpleName());
                 System.out.print(",  ");
             }
 
             //start a new line
-            System.out.println(",");
+            System.out.println();
         }
     }
 
