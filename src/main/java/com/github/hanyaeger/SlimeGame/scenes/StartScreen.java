@@ -27,6 +27,6 @@ public class StartScreen extends StaticScene {
 	@Override
 	public void setupEntities(){
 	    
-	    addEntity(new StartButton(new Coordinate2D(getWidth() / 2, getHeight() / 10 * 6), slimeGame));
+	    addEntity(new StartButton(new Coordinate2D(getWidth() / 2, getHeight() * 0.9), slimeGame));
 	}
 }
