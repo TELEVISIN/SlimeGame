@@ -111,7 +111,7 @@ public abstract class Player extends iLifeform implements KeyListener {
 		}
 
 		//if colliding with wall or crate check wall collision
-		if (collidingObject instanceof Wall || collidingObject instanceof Crate) {
+		if (collidingObject instanceof Wall || collidingObject instanceof Crate || collidingObject instanceof Door) {
 			checkWallCollision(collidingObject);
 		}
 	}
@@ -128,10 +128,13 @@ public abstract class Player extends iLifeform implements KeyListener {
 		double windowHeight = this.getSceneHeight();
 		double windowWidth = this.getSceneWidth();
 
+		//instance is wall
 		if (collidingObject instanceof Wall) {
 			wallX = ((Wall) collidingObject).getAnchorLocation().getX();
 			wallY = ((Wall) collidingObject).getAnchorLocation().getY();
-		} else {
+		}
+		//instance is Crate
+		else if (collidingObject instanceof Crate){
 			if (((Crate) collidingObject).isDestroyed) {
 				//if crate is destroyed, cancel collision
 				return;
@@ -139,6 +142,12 @@ public abstract class Player extends iLifeform implements KeyListener {
 
 			wallX = ((Crate) collidingObject).getAnchorLocation().getX();
 			wallY = ((Crate) collidingObject).getAnchorLocation().getY();
+		}
+		//instance is Door
+		else
+		{
+			wallX = ((Door) collidingObject).getAnchorLocation().getX();
+			wallY = ((Door) collidingObject).getAnchorLocation().getY();
 		}
 
 
