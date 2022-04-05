@@ -105,9 +105,8 @@ public abstract class Player extends iLifeform implements KeyListener {
 			}
 		}
 
-
 		//if colliding with enemy, take damage
-		if (collidingObject instanceof SmallSlime) {
+		if (collidingObject instanceof LifeformHitbox) {
 			System.out.println("Enemy");
 			changeHealth(-5);
 
@@ -372,9 +371,4 @@ public abstract class Player extends iLifeform implements KeyListener {
 		canMoveLeft = true;
 		canMoveRight = true;
 	}
-
-	//onCollison
-	//Move
-	//updateHealth
-	//updateExperience
 }
