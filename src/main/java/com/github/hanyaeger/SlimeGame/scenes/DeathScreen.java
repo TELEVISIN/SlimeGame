@@ -1,6 +1,7 @@
 package com.github.hanyaeger.SlimeGame.scenes;
 
 import com.github.hanyaeger.SlimeGame.SlimeGame;
+import com.github.hanyaeger.SlimeGame.entities.buttons.QuitButton;
 import com.github.hanyaeger.SlimeGame.entities.buttons.ReplayButton;
 import com.github.hanyaeger.SlimeGame.entities.buttons.StartButton;
 import com.github.hanyaeger.api.AnchorPoint;
@@ -28,6 +29,8 @@ public class DeathScreen extends StaticScene {
 	@Override
 	public void setupEntities(){
 	    
-	    addEntity(new ReplayButton(new Coordinate2D(getWidth() / 2, getHeight() / 10 * 6), slimeGame));
+		addEntity(new ReplayButton(new Coordinate2D(getWidth() / 2, getHeight() / 10 * 6), slimeGame));
+		addEntity(new QuitButton(new Coordinate2D(getWidth() / 2, getHeight() / 10 * 7), slimeGame));
+	    
 	}
 }

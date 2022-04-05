@@ -107,7 +107,7 @@ public abstract class Player extends iLifeform implements KeyListener {
 
 
 		//if colliding with enemy, take damage
-		if (collidingObject instanceof Enemy) {
+		if (collidingObject instanceof SmallSlime) {
 			System.out.println("Enemy");
 			changeHealth(-5);
 
