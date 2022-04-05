@@ -31,7 +31,7 @@ public abstract class Player extends iLifeform implements KeyListener {
 	int width = SlimeGame.SPRITE_SIZE * SlimeGame.spriteScale;
 	int height = SlimeGame.SPRITE_SIZE * SlimeGame.spriteScale;
 	
-	public static int health = BASE_HEALTH;
+	private int health = BASE_HEALTH;
 	double speed = BASE_SPEED;
 	double attackPower = BASE_ATTACK_POWER;
 	double attackSpeed = BASE_ATTACK_SPEED;
