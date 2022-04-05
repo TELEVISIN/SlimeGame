@@ -73,7 +73,6 @@ public abstract class Player extends iLifeform implements KeyListener {
 		if (collidingObject instanceof Enemy) {
 			System.out.println("Enemy");
 			health -= 5;
-
 		}
 
 		//if colliding with wall or crate check wall collision

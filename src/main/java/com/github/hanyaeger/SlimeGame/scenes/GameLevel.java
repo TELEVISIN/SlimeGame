@@ -33,7 +33,6 @@ public class GameLevel extends DynamicScene implements TileMapContainer, MouseBu
     
     private SlimeGame slimeGame;
     private Paladin paladin;
-    private SmallSlime smallSlime;
     private Coordinate2D attackLocation;
     
     private Timer timer;
@@ -58,14 +57,11 @@ public class GameLevel extends DynamicScene implements TileMapContainer, MouseBu
 				1, // double speed
 				10, // double attackPower
 				0.7); // double attackSpeed
-		
-		smallSlime = new SmallSlime(new Coordinate2D(getWidth() / 3, getHeight() / 4),
-				slimeGame, normalRoom);
 	}
 
     @Override
     public void setupEntities() {
-        // TODO Auto-generated method stub
+        // TODO Auto-generated method stub    	
     	var healthBar = new TextEntity(
     	        new Coordinate2D(getWidth() / 2, getHeight() - 75),
     	        "Health: " + Player.health
@@ -75,9 +71,7 @@ public class GameLevel extends DynamicScene implements TileMapContainer, MouseBu
 	    healthBar.setFont(Font.font("Roboto", FontWeight.BOLD, 30));
 	    addEntity(healthBar);
     	
-    	
         addEntity(paladin);
-        //addEntity(smallSlime);
     }
     
     @Override
