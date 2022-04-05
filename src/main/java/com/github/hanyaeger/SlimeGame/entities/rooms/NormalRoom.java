@@ -1,5 +1,7 @@
 package com.github.hanyaeger.SlimeGame.entities.rooms;
 
+import com.github.hanyaeger.SlimeGame.entities.obstacles.Crate;
+import com.github.hanyaeger.SlimeGame.entities.obstacles.Door;
 import com.github.hanyaeger.SlimeGame.entities.obstacles.Floor;
 import com.github.hanyaeger.SlimeGame.entities.obstacles.Wall;
 import com.github.hanyaeger.SlimeGame.scenes.GameLevel;
@@ -49,15 +51,10 @@ public class NormalRoom extends Room{
                     wallChance = random.nextInt(100);
                     crateChance = random.nextInt(100);
 
-                    //wall has priority over crates
-                    if (wallChance < wallChanceMaximum)
-                    {
-                        oldTilemap = addWall(oldTilemap, columnNr, rowNr);
-                    }
-                    else if (crateChance < crateChanceMaximum)
-                    {
-                        oldTilemap = addCrate(oldTilemap, columnNr, rowNr);
-                    }
+                    //try to add an obstacle
+                    oldTilemap = addObstacle(oldTilemap, columnNr, rowNr);
+
+
                 }
             }
         }
@@ -65,7 +62,7 @@ public class NormalRoom extends Room{
         return newTilemap;
     }
 
-    private int[][] addWall(int[][] oldTilemap, int columnNr, int rowNr)
+    private int[][] addObstacle(int[][] oldTilemap, int columnNr, int rowNr)
     {
         int[][] newTilemap = oldTilemap;
 
@@ -78,25 +75,32 @@ public class NormalRoom extends Room{
         int leftTileXIndex = columnNr - 1;
         int leftTileYIndex = rowNr;
 
-        //check if tile is next to wall
+        //check if tile is next to wall, door or crate
         if (entityClassArray[oldTilemap[upperTileYIndex][upperTileXIndex] - 1] != Wall.class &&
                 entityClassArray[oldTilemap[rightTileYIndex][rightTileXIndex] - 1] != Wall.class &&
                 entityClassArray[oldTilemap[lowerTileYIndex][lowerTileXIndex] - 1] != Wall.class &&
-                entityClassArray[oldTilemap[leftTileYIndex][leftTileXIndex] - 1] != Wall.class)
+                entityClassArray[oldTilemap[leftTileYIndex][leftTileXIndex] - 1] != Wall.class &&
+                entityClassArray[oldTilemap[upperTileYIndex][upperTileXIndex] - 1] != Door.class &&
+                entityClassArray[oldTilemap[rightTileYIndex][rightTileXIndex] - 1] != Door.class &&
+                entityClassArray[oldTilemap[lowerTileYIndex][lowerTileXIndex] - 1] != Door.class &&
+                entityClassArray[oldTilemap[leftTileYIndex][leftTileXIndex] - 1] != Door.class &&
+                entityClassArray[oldTilemap[upperTileYIndex][upperTileXIndex] - 1] != Crate.class &&
+                entityClassArray[oldTilemap[rightTileYIndex][rightTileXIndex] - 1] != Crate.class &&
+                entityClassArray[oldTilemap[lowerTileYIndex][lowerTileXIndex] - 1] != Crate.class &&
+                entityClassArray[oldTilemap[leftTileYIndex][leftTileXIndex] - 1] != Crate.class)
         {
-            //place wall
-            newTilemap[rowNr][columnNr] = 10;
+            //wall has priority over crates
+            if (wallChance < wallChanceMaximum)
+            {
+                //place wall
+                newTilemap[rowNr][columnNr] = 10;
+            }
+            else if (crateChance < crateChanceMaximum)
+            {
+                //place crate
+                newTilemap[rowNr][columnNr] = 7;
+            }
         }
-
-        return newTilemap;
-    }
-
-    private int[][] addCrate(int[][] oldTilemap, int columnNr, int rowNr)
-    {
-        int[][] newTilemap = oldTilemap;
-
-        //place crate
-        newTilemap[rowNr][columnNr] = 7;
 
         return newTilemap;
     }

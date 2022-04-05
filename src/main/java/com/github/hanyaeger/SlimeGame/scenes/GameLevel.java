@@ -28,7 +28,6 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import spawners.SlimeSpawner;
 
-import java.util.List;
 import java.util.Set;
 
 public class GameLevel extends DynamicScene implements TileMapContainer, MouseButtonPressedListener, KeyListener, TimerContainer, EntitySpawnerContainer {
