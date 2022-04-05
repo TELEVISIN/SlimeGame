@@ -118,8 +118,6 @@ public abstract class Room extends TileMap {
 
     }
 
-    private void setCrates() {}
-
     //create the base for the TileMap
     protected int[][] createTileMap()
     {

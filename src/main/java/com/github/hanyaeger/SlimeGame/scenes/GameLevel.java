@@ -9,6 +9,7 @@ import com.github.hanyaeger.SlimeGame.entities.PaladinSprite;
 import com.github.hanyaeger.SlimeGame.entities.Player;
 import com.github.hanyaeger.SlimeGame.entities.SlimeKing;
 import com.github.hanyaeger.SlimeGame.entities.SmallSlime;
+import com.github.hanyaeger.SlimeGame.entities.rooms.BossRoom;
 import com.github.hanyaeger.SlimeGame.entities.rooms.NormalRoom;
 import com.github.hanyaeger.SlimeGame.entities.rooms.Room;
 import com.github.hanyaeger.api.AnchorPoint;
@@ -41,11 +42,11 @@ public class GameLevel extends DynamicScene implements TileMapContainer, MouseBu
 	private int slimeKingChanceThreshold = 20;
 	private Random random = new Random();
 	private int slimeKingChance;
-
+	private boolean bossTime = false;
     
     private Timer timer;
 
-    public Room normalRoom;
+    public Room room;
     
     public GameLevel(SlimeGame slimeGame) {
         this.slimeGame = slimeGame;
@@ -53,17 +54,16 @@ public class GameLevel extends DynamicScene implements TileMapContainer, MouseBu
 
 	@Override
 	public void setupScene() {
-		// TODO Auto-generated method stub
 		setBackgroundAudio("audio/Algar Euphoria Green Flower Loopable.mp3");
 
-        //generate the room first time
-        generateRoom();
+		checkBossTime();
+
+		//generate the room
+		generateRoom();
 	}
 
     @Override
     public void setupEntities() {
-        // TODO Auto-generated method stub
-        
 		var healthText = new HealthText(
 		        new Coordinate2D(getWidth() / 2, getHeight() - 75)
 		    );
@@ -74,29 +74,39 @@ public class GameLevel extends DynamicScene implements TileMapContainer, MouseBu
 		paladin = new Paladin(new Coordinate2D(getWidth() / 2, getHeight() / 2), // Coordinate2D coordinate2d
 				slimeGame, // SlimeGame slimeGame
 				healthText,
-				normalRoom,
+				room,
 				this);
 
 		
 		var smallSlime = new SmallSlime(new Coordinate2D(getWidth() / 3, getHeight() / 4),
-				slimeGame, normalRoom);
+				slimeGame, room);
 	
 	    addEntity(healthText);
     	    	
         addEntity(paladin);
 
-		addSlimeKing();
+		if (bossTime) {
+			addSlimeKing();
+		}
     }
 
 	private void addSlimeKing()
 	{
+		//spawn slime king
+		slimeKing = new SlimeKing(new Coordinate2D(512, 128), slimeGame, room);
+		addEntity(slimeKing);
+		System.out.println("KING SLIME APPROACHES");
+	}
+
+	private void checkBossTime()
+	{
+		//check if it is time for the boss
 		slimeKingChance = random.nextInt(100);
 		System.out.println(slimeKingChance);
 
 		//spawn slime king on chance
 		if (slimeKingChance <= slimeKingChanceThreshold) {
-			slimeKing = new SlimeKing(new Coordinate2D(512, 128), slimeGame, normalRoom);
-			addEntity(slimeKing);
+			bossTime = true;
 			System.out.println("KING SLIME APPROACHES");
 		}
 	}
@@ -141,13 +151,20 @@ public class GameLevel extends DynamicScene implements TileMapContainer, MouseBu
     //handle map
     @Override
     public void setupTileMaps() {
-        addTileMap(normalRoom);
+        addTileMap(room);
     }
 
     //generate a new roomq
     public void generateRoom()
     {
-        normalRoom = new NormalRoom(this);
+		if (!bossTime) {
+			//random room
+			room = new NormalRoom(this);
+		}
+		else
+		{
+			room = new BossRoom(this);
+		}
     }
 
 	//set a new room for the level
@@ -180,6 +197,6 @@ public class GameLevel extends DynamicScene implements TileMapContainer, MouseBu
 	@Override
 	public void setupEntitySpawners() {
 		// TODO Auto-generated method stub
-		addEntitySpawner(new SlimeSpawner(getWidth(), getHeight(), normalRoom));
+		addEntitySpawner(new SlimeSpawner(getWidth(), getHeight(), room));
 	}
 }

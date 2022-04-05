@@ -6,7 +6,7 @@ import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
 
 public class SlimeKing extends Slime {
-	public SlimeKing(Coordinate2D coordinate2d, SlimeGame slimeGame, Room parentroom) {
+	public SlimeKing(Coordinate2D coordinate2d, SlimeGame slimeGame, Room parentRoom) {
 		super(coordinate2d, slimeGame);
 		// TODO Auto-generated constructor stub
 		this.parentRoom = parentRoom;
