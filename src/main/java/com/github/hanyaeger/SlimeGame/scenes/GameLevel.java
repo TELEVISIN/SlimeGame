@@ -6,6 +6,11 @@ import com.github.hanyaeger.SlimeGame.entities.AttackTimer;
 import com.github.hanyaeger.SlimeGame.entities.HealthText;
 import com.github.hanyaeger.SlimeGame.entities.Paladin;
 import com.github.hanyaeger.SlimeGame.entities.PaladinSprite;
+<<<<<<< HEAD
+=======
+import com.github.hanyaeger.SlimeGame.entities.Player;
+import com.github.hanyaeger.SlimeGame.entities.SlimeKing;
+>>>>>>> b4229c5750317edf6788e403bd4df61d9b017962
 import com.github.hanyaeger.SlimeGame.entities.SmallSlime;
 import com.github.hanyaeger.SlimeGame.entities.rooms.NormalRoom;
 import com.github.hanyaeger.SlimeGame.entities.rooms.Room;
@@ -33,6 +38,7 @@ public class GameLevel extends DynamicScene implements TileMapContainer, MouseBu
     
     private SlimeGame slimeGame;
     private Paladin paladin;
+    private SlimeKing slimeKing;
     private Coordinate2D attackLocation;
     
     private Timer timer;
@@ -69,12 +75,15 @@ public class GameLevel extends DynamicScene implements TileMapContainer, MouseBu
 				normalRoom,
 				this);
 		
+		slimeKing = new SlimeKing(new Coordinate2D(512, 128), slimeGame, normalRoom);
+		
 		var smallSlime = new SmallSlime(new Coordinate2D(getWidth() / 3, getHeight() / 4),
 				slimeGame, normalRoom);
 	
 	    addEntity(healthText);
     	    	
         addEntity(paladin);
+        //addEntity(slimeKing);
     }
     
     @Override
