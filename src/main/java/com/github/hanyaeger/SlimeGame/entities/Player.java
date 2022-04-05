@@ -66,23 +66,22 @@ public abstract class Player extends iLifeform implements KeyListener {
 
 		System.out.println(collidingObject.getClass());
 
-//		if (collidingObject instanceof Door) {
-//			System.out.println("Door");
-//			health -= 5;
-//
-//		}
-//
-//		//if colliding with enemy, take damage
-//		if (collidingObject instanceof Enemy) {
-//			System.out.println("Enemy");
-//			health -= 5;
-//
-//		}
-//
-//		//if colliding with wall or crate check wall collision
-//		if (collidingObject instanceof Wall || collidingObject instanceof Crate) {
-//			checkWallCollision(collidingObject);
-//		}
+		if (collidingObject instanceof Door) {
+			System.out.println("Door");
+
+		}
+
+		//if colliding with enemy, take damage
+		if (collidingObject instanceof Enemy) {
+			System.out.println("Enemy");
+			health -= 5;
+
+		}
+
+		//if colliding with wall or crate check wall collision
+		if (collidingObject instanceof Wall || collidingObject instanceof Crate) {
+			checkWallCollision(collidingObject);
+		}
 	}
 
 	public void checkWallCollision(Collider collidingObject) {
