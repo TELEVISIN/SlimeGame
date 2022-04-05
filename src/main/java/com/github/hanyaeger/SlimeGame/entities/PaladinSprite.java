@@ -17,23 +17,23 @@ public class PaladinSprite extends DynamicSpriteEntity implements KeyListener {
 	
 	public PaladinSprite(Coordinate2D initialLocation, Size size) {
 		super("sprites/LifeformSpriteSheet.png", initialLocation, size, 8, 8);
-        setCurrentFrameIndex(0);
+        setCurrentFrameIndex(32);
 	}
 
 	//handle paladin movement
 	@Override
 	public void onPressedKeysChange(Set<KeyCode> pressedKeys) {
 		if(pressedKeys.contains(KeyCode.LEFT) || pressedKeys.contains(KeyCode.A)) {
-	        setCurrentFrameIndex(16); //paladin facing left, 17th image
+	        setCurrentFrameIndex(48); //paladin facing left, 49th image
 	        direction = 3;
 		} else if (pressedKeys.contains(KeyCode.RIGHT) || pressedKeys.contains(KeyCode.D)) {
-	        setCurrentFrameIndex(8); //paladin facing right, 9th image
+	        setCurrentFrameIndex(40); //paladin facing right, 41th image
 	        direction = 1;
 		} else if (pressedKeys.contains(KeyCode.UP) || pressedKeys.contains(KeyCode.W)) {
-	        setCurrentFrameIndex(24); //paladin facing up, 25th image
+	        setCurrentFrameIndex(56); //paladin facing up, 56th image
 	        direction = 0;
 		} else if (pressedKeys.contains(KeyCode.DOWN) || pressedKeys.contains(KeyCode.S)) {
-	        setCurrentFrameIndex(0); //paladin facing down, first item
+	        setCurrentFrameIndex(32); //paladin facing down, 33th image
 	        direction = 2;
 		}
 	}
