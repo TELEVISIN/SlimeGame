@@ -6,6 +6,9 @@ import com.github.hanyaeger.SlimeGame.SlimeGame;
 import com.github.hanyaeger.SlimeGame.entities.obstacles.Crate;
 import com.github.hanyaeger.SlimeGame.entities.obstacles.Door;
 import com.github.hanyaeger.SlimeGame.entities.obstacles.Wall;
+import com.github.hanyaeger.SlimeGame.entities.rooms.NormalRoom;
+import com.github.hanyaeger.SlimeGame.entities.rooms.Room;
+import com.github.hanyaeger.SlimeGame.scenes.GameLevel;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.entities.Collided;
 import com.github.hanyaeger.api.entities.Collider;
@@ -44,12 +47,15 @@ public abstract class Player extends iLifeform implements KeyListener {
 	int experience;
 	int level;
 	SlimeGame slimeGame;
+	Room parentRoom;
 	HealthText healthText;
 	
-	public Player(Coordinate2D coordinate2d, SlimeGame slimeGame, HealthText healthText, int health, double speed, double attackPower, double atatckSpeed) {
+	public Player(Coordinate2D coordinate2d, SlimeGame slimeGame, HealthText healthText, Room parentRoom) {
 		super(coordinate2d);
 		this.slimeGame = slimeGame;
 		this.healthText = healthText;
+		this.parentRoom = parentRoom;
+
 		
 		setHealth(BASE_HEALTH);
 	}
@@ -57,7 +63,6 @@ public abstract class Player extends iLifeform implements KeyListener {
 
 	@Override
 	public void onPressedKeysChange(Set<KeyCode> pressedKeys) {
-		// TODO Auto-generated method stub
 		leftKey = pressedKeys.contains(KeyCode.LEFT) || pressedKeys.contains(KeyCode.A);
 		upKey = pressedKeys.contains(KeyCode.UP) || pressedKeys.contains(KeyCode.W);
 		rightKey = pressedKeys.contains(KeyCode.RIGHT) || pressedKeys.contains(KeyCode.D);
@@ -94,9 +99,12 @@ public abstract class Player extends iLifeform implements KeyListener {
 		System.out.println(collidingObject.getClass().getSimpleName());
 
 		if (collidingObject instanceof Door) {
-			System.out.println("Door");
-
+			//if doors are open generate new room
+			if (parentRoom.doorsOpen) {
+				gameLevel.setNewRoom();
+			}
 		}
+
 
 		//if colliding with enemy, take damage
 		if (collidingObject instanceof Enemy) {

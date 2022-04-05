@@ -6,7 +6,6 @@ import com.github.hanyaeger.SlimeGame.entities.AttackTimer;
 import com.github.hanyaeger.SlimeGame.entities.HealthText;
 import com.github.hanyaeger.SlimeGame.entities.Paladin;
 import com.github.hanyaeger.SlimeGame.entities.PaladinSprite;
-import com.github.hanyaeger.SlimeGame.entities.Player;
 import com.github.hanyaeger.SlimeGame.entities.SmallSlime;
 import com.github.hanyaeger.SlimeGame.entities.rooms.NormalRoom;
 import com.github.hanyaeger.SlimeGame.entities.rooms.Room;
@@ -15,7 +14,6 @@ import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.EntitySpawnerContainer;
 import com.github.hanyaeger.api.Timer;
 import com.github.hanyaeger.api.TimerContainer;
-import com.github.hanyaeger.api.entities.impl.TextEntity;
 import com.github.hanyaeger.api.scenes.DynamicScene;
 import com.github.hanyaeger.api.scenes.TileMapContainer;
 import com.github.hanyaeger.api.userinput.KeyListener;
@@ -28,6 +26,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import spawners.SlimeSpawner;
 
+import java.util.List;
 import java.util.Set;
 
 public class GameLevel extends DynamicScene implements TileMapContainer, MouseButtonPressedListener, KeyListener, TimerContainer, EntitySpawnerContainer {
@@ -38,7 +37,7 @@ public class GameLevel extends DynamicScene implements TileMapContainer, MouseBu
     
     private Timer timer;
 
-    protected Room normalRoom;
+    public Room normalRoom;
     
     public GameLevel(SlimeGame slimeGame) {
         this.slimeGame = slimeGame;
@@ -67,10 +66,8 @@ public class GameLevel extends DynamicScene implements TileMapContainer, MouseBu
 		paladin = new Paladin(new Coordinate2D(getWidth() / 2, getHeight() / 2), // Coordinate2D coordinate2d
 				slimeGame, // SlimeGame slimeGame
 				healthText,
-				100, // int health
-				1, // double speed
-				10, // double attackPower
-				0.7); // double attackSpeed
+				normalRoom,
+				this);
 		
 		var smallSlime = new SmallSlime(new Coordinate2D(getWidth() / 3, getHeight() / 4),
 				slimeGame, normalRoom);
@@ -124,11 +121,20 @@ public class GameLevel extends DynamicScene implements TileMapContainer, MouseBu
         addTileMap(normalRoom);
     }
 
-    //generate a new room
+    //generate a new roomq
     public void generateRoom()
     {
         normalRoom = new NormalRoom(this);
     }
+
+	//set a new room for the level
+	public void setNewRoom()
+	{
+		//clear the level and run setup entities again
+		slimeGame.setActiveScene(1);
+
+		System.out.println("NEW ROOM SET");
+	}
 
     @Override
     public void onPressedKeysChange(Set<KeyCode> pressedKeys) {

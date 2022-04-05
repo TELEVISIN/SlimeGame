@@ -29,7 +29,8 @@ public abstract class Room extends TileMap {
     int floorRandomChanceMaximum = 10;
     int floorRandomChance;
 
-    boolean doorsOpen = false;
+    //public boolean doorsOpen = false;
+    public boolean doorsOpen = true;
 
 
     //class array to keep track of the entity classes of this tilemap
