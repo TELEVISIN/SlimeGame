@@ -20,7 +20,7 @@ public class AttackSprite extends DynamicSpriteEntity implements MouseButtonPres
 	public int attackPower = 1;
 	
 	public AttackSprite(Coordinate2D initialLocation) {
-		super("sprites/LifeformSpriteSheet.png", initialLocation, new Size(64, 64), 8, 8);
+		super("sprites/LifeformSpriteSheet.png", initialLocation, new Size(128, 128), 8, 8);
 		switch(PaladinSprite.direction) {
 	    	case 0:
 	    		setCurrentFrameIndex(27); //up
