@@ -47,6 +47,7 @@ public abstract class Enemy extends iLifeform {
 				parentRoom.updateEnemiesKilled();
 				isAlive = false;
 				System.out.println("ENEMY KILLED");
+				remove();
 			}
 		}
 

@@ -4,6 +4,7 @@ import com.github.hanyaeger.SlimeGame.SlimeGame;
 import com.github.hanyaeger.SlimeGame.entities.AttackSprite;
 import com.github.hanyaeger.SlimeGame.entities.AttackTimer;
 import com.github.hanyaeger.SlimeGame.entities.Paladin;
+import com.github.hanyaeger.SlimeGame.entities.PaladinSprite;
 import com.github.hanyaeger.SlimeGame.entities.Player;
 import com.github.hanyaeger.SlimeGame.entities.SmallSlime;
 import com.github.hanyaeger.SlimeGame.entities.rooms.NormalRoom;
@@ -31,6 +32,7 @@ public class GameLevel extends DynamicScene implements TileMapContainer, MouseBu
     private SlimeGame slimeGame;
     private Paladin paladin;
     private SmallSlime smallSlime;
+    private Coordinate2D attackLocation;
     
     private Timer timer;
 
@@ -86,7 +88,26 @@ public class GameLevel extends DynamicScene implements TileMapContainer, MouseBu
         	paladin.Attack();
             
             //create attackSprite
-            addEntity(new AttackSprite(paladin.getAnchorLocation()));
+        	switch (PaladinSprite.direction) {
+        		case 0:
+        			attackLocation = new Coordinate2D(-64, -128);
+        			break;
+        		case 1:
+        			attackLocation = new Coordinate2D(0, -64);
+        			break;
+        		case 2:
+        			attackLocation = new Coordinate2D(-64, 0);
+        			break;
+        		case 3:
+        			attackLocation = new Coordinate2D(-128, -64);
+        			break;
+        		default:
+        			break;	
+        	}
+        	System.out.println(attackLocation);
+        	attackLocation = attackLocation.add(paladin.getAnchorLocation());
+        	System.out.println(attackLocation);
+            addEntity(new AttackSprite(attackLocation));
         } 
         
         //RIGHT MOUSE BUTTON for blocking
