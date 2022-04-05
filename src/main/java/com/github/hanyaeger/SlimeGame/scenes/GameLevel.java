@@ -11,6 +11,7 @@ import com.github.hanyaeger.SlimeGame.entities.rooms.NormalRoom;
 import com.github.hanyaeger.SlimeGame.entities.rooms.Room;
 import com.github.hanyaeger.api.AnchorPoint;
 import com.github.hanyaeger.api.Coordinate2D;
+import com.github.hanyaeger.api.EntitySpawnerContainer;
 import com.github.hanyaeger.api.Timer;
 import com.github.hanyaeger.api.TimerContainer;
 import com.github.hanyaeger.api.entities.impl.TextEntity;
@@ -24,10 +25,11 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import spawners.SlimeSpawner;
 
 import java.util.Set;
 
-public class GameLevel extends DynamicScene implements TileMapContainer, MouseButtonPressedListener, KeyListener, TimerContainer {
+public class GameLevel extends DynamicScene implements TileMapContainer, MouseButtonPressedListener, KeyListener, TimerContainer, EntitySpawnerContainer {
     
     private SlimeGame slimeGame;
     private Paladin paladin;
@@ -75,7 +77,7 @@ public class GameLevel extends DynamicScene implements TileMapContainer, MouseBu
     	
     	
         addEntity(paladin);
-        addEntity(smallSlime);
+        //addEntity(smallSlime);
     }
     
     @Override
@@ -104,9 +106,7 @@ public class GameLevel extends DynamicScene implements TileMapContainer, MouseBu
         		default:
         			break;	
         	}
-        	System.out.println(attackLocation);
         	attackLocation = attackLocation.add(paladin.getAnchorLocation());
-        	System.out.println(attackLocation);
             addEntity(new AttackSprite(attackLocation));
         } 
         
@@ -148,5 +148,11 @@ public class GameLevel extends DynamicScene implements TileMapContainer, MouseBu
 		//timer in ms
 		timer = new AttackTimer(1000);
 		addTimer(timer);
+	}
+
+	@Override
+	public void setupEntitySpawners() {
+		// TODO Auto-generated method stub
+		addEntitySpawner(new SlimeSpawner(getWidth(), getHeight()));
 	}
 }
