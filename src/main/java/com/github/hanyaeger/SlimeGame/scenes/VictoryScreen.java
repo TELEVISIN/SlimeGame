@@ -28,6 +28,12 @@ public class VictoryScreen extends StaticScene {
 
 	@Override
 	public void setupEntities(){
+		
+		var screenText = new TextEntity(new Coordinate2D(getWidth() / 2, getHeight() / 10 * 4), "You Win!");
+		screenText.setFill(Color.YELLOW);
+		screenText.setFont(Font.font("Lucida Calligraphy", FontWeight.BOLD, 45));
+		screenText.setAnchorPoint(AnchorPoint.CENTER_CENTER);
+		addEntity(screenText);
 	    
 		addEntity(new ReplayButton(new Coordinate2D(getWidth() / 2, getHeight() / 10 * 6), slimeGame));
 		addEntity(new QuitButton(new Coordinate2D(getWidth() / 2, getHeight() / 10 * 7), slimeGame));
