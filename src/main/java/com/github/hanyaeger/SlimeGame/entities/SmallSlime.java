@@ -26,7 +26,7 @@ public class SmallSlime extends Slime {
 	protected void setupEntities() {
 		// TODO Auto-generated method stub
 		addEntity(new SlimeSprite(new Coordinate2D(0, 0), new Size(width, height)));
-		addEntity(new LifeformHitbox(this, new Coordinate2D(0, 0), (int)(width * 0.95), (int)(height * 0.95)));
+		addEntity(new LifeformHitbox(this, new Coordinate2D(0, height / 2), (int)(width * 0.95), (int)(height * 0.6)));
 	}
 	
 	public void Move() {

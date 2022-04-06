@@ -28,7 +28,8 @@ public class DeathScreen extends StaticScene {
 
 	@Override
 	public void setupEntities(){
-	    
+	    		
+		
 		addEntity(new ReplayButton(new Coordinate2D(getWidth() / 2, getHeight() / 10 * 6), slimeGame));
 		addEntity(new QuitButton(new Coordinate2D(getWidth() / 2, getHeight() / 10 * 7), slimeGame));
 	    
