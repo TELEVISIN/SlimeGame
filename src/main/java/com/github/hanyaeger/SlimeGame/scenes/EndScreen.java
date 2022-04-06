@@ -23,7 +23,7 @@ public class EndScreen extends StaticScene {
 
 	@Override
 	public void setupScene() {
-	    setBackgroundImage("backgrounds/DeathScreen.png");
+	    setBackgroundImage("backgrounds/EndScreen.png");
 	}
 
 	@Override
