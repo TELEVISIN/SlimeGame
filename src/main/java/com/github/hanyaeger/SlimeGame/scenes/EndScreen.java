@@ -3,7 +3,6 @@ package com.github.hanyaeger.SlimeGame.scenes;
 import com.github.hanyaeger.SlimeGame.SlimeGame;
 import com.github.hanyaeger.SlimeGame.entities.buttons.QuitButton;
 import com.github.hanyaeger.SlimeGame.entities.buttons.ReplayButton;
-import com.github.hanyaeger.SlimeGame.entities.buttons.StartButton;
 import com.github.hanyaeger.api.AnchorPoint;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.entities.impl.TextEntity;
@@ -16,16 +15,26 @@ import javafx.scene.text.FontWeight;
 public class EndScreen extends StaticScene {
 	
 	private SlimeGame slimeGame;
-	
+
+	/**
+	 * Constructor off EndScreen. Creates an object of the end screen.
+	 * @param slimeGame
+	 */
 	public EndScreen(SlimeGame slimeGame) {
 		this.slimeGame = slimeGame;
 	}
 
+	/**
+	 * Setup method for the scene.
+	 */
 	@Override
 	public void setupScene() {
 	    setBackgroundImage("backgrounds/EndScreen.png");
 	}
 
+	/**
+	 * Sets up the entities for the scene.
+	 */
 	@Override
 	public void setupEntities(){
 		

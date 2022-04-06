@@ -20,17 +20,24 @@ public class SlimeSpawner extends EntitySpawner {
 	private final double sceneWidth;
 	private final double sceneHeight;
 
+	/**
+	 * Constructor of SlimeSpawner. Creates an object of a slime spawner.
+	 * @param sceneWidth
+	 * @param sceneHeight
+	 * @param roomType
+	 */
 	public SlimeSpawner(double sceneWidth, double sceneHeight, Room roomType) {
 		super(100);
 		this.sceneWidth = sceneWidth;
 		this.sceneHeight = sceneHeight;
 		this.room = roomType;
-		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * Spawns the entities.
+	 */
 	@Override
 	protected void spawnEntities() {
-		// TODO Auto-generated method stub
 		if (spawnKing) {
 			spawn(new SlimeKing(randomLocation(), slimeGame, room));
 		} else if (numOfSlimes < numOfEnemies && !spawnKing) {
@@ -38,7 +45,11 @@ public class SlimeSpawner extends EntitySpawner {
 			numOfSlimes += 1;
 		}
 	}
-	
+
+	/**
+	 * Generates a random location on the screen.
+	 * @return Returns a random Coordinate2D
+	 */
 	private Coordinate2D randomLocation() {
 		double x = new Random().nextInt((int) sceneWidth);
 		double y = new Random().nextInt((int) sceneHeight);
