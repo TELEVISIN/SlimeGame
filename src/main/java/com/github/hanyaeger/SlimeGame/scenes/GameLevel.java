@@ -54,6 +54,7 @@ public class GameLevel extends DynamicScene implements TileMapContainer, MouseBu
 
 	@Override
 	public void setupScene() {
+		slimeGame.setHasWon(false);
 		setBackgroundAudio("audio/Algar Euphoria Green Flower Loopable.mp3");
 
 		checkBossTime();
