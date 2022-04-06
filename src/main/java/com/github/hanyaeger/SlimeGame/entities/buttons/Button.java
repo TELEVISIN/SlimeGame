@@ -12,15 +12,26 @@ import javafx.scene.Cursor;
 import javafx.scene.input.MouseButton;
 
 public class Button extends TextEntity implements MouseButtonPressedListener,MouseEnterListener,MouseExitListener {
-	
+
 	protected SlimeGame slimeGame;
 
+	/**
+	 * Creates a button
+	 * @param initialLocation
+	 * @param slimeGame
+	 * @param buttonText
+	 */
 	public Button(Coordinate2D initialLocation, SlimeGame slimeGame, String buttonText) {
 		super(initialLocation, buttonText);
 		setAnchorPoint(AnchorPoint.CENTER_CENTER);
 		this.slimeGame = slimeGame;
 	}
 
+	/**
+	 *
+	 * @param button
+	 * @param coordinate2d
+	 */
 	@Override
 	public void onMouseButtonPressed(MouseButton button, Coordinate2D coordinate2d) {
 		// TODO Auto-generated method stub

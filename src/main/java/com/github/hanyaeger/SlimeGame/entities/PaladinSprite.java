@@ -8,7 +8,6 @@ import com.github.hanyaeger.api.entities.impl.DynamicSpriteEntity;
 import com.github.hanyaeger.api.userinput.KeyListener;
 
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.MouseButton;
 
 public class PaladinSprite extends DynamicSpriteEntity implements KeyListener {
 

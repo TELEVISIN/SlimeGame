@@ -1,0 +1,8 @@
+module:SlimeGame
+com.github.hanyaeger.SlimeGame
+com.github.hanyaeger.SlimeGame.entities
+com.github.hanyaeger.SlimeGame.entities.buttons
+com.github.hanyaeger.SlimeGame.entities.obstacles
+com.github.hanyaeger.SlimeGame.entities.rooms
+com.github.hanyaeger.SlimeGame.scenes
+spawners
