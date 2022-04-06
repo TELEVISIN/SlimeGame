@@ -1,9 +1,8 @@
 package com.github.hanyaeger.SlimeGame;
 
-import com.github.hanyaeger.SlimeGame.scenes.DeathScreen;
+import com.github.hanyaeger.SlimeGame.scenes.EndScreen;
 import com.github.hanyaeger.SlimeGame.scenes.GameLevel;
 import com.github.hanyaeger.SlimeGame.scenes.StartScreen;
-import com.github.hanyaeger.SlimeGame.scenes.VictoryScreen;
 import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.YaegerGame;
 
@@ -14,6 +13,9 @@ public class SlimeGame extends YaegerGame{
 	public static int roomTileColumns = 19; // default 19
 	public static int roomTileRows = 11; // default 11
 	public static int spriteScale = 2; // default 2
+
+	
+	private boolean hasWon = false;
 
 	/**
 	 * The main function of the game. Called on startup to launch the game.
@@ -42,7 +44,14 @@ public class SlimeGame extends YaegerGame{
 	public void setupScenes(){
 	    addScene(0, new StartScreen(this));
 	    addScene(1, new GameLevel(this));
-	    addScene(2, new DeathScreen(this));
-	    addScene(3, new VictoryScreen(this));
+	    addScene(2, new EndScreen(this));
+	}
+	
+	public void setHasWon(boolean hasWon) {
+		this.hasWon = hasWon;
+	}
+	
+	public boolean getHasWon() {
+		return hasWon;
 	}
 }

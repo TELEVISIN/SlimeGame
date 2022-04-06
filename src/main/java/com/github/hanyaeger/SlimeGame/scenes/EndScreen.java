@@ -13,28 +13,34 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
-public class VictoryScreen extends StaticScene {
+public class EndScreen extends StaticScene {
 	
 	private SlimeGame slimeGame;
 	
-	public VictoryScreen(SlimeGame slimeGame) {
+	public EndScreen(SlimeGame slimeGame) {
 		this.slimeGame = slimeGame;
 	}
 
 	@Override
 	public void setupScene() {
-	    setBackgroundImage("backgrounds/VictoryScreen.png");
+	    setBackgroundImage("backgrounds/EndScreen.png");
 	}
 
 	@Override
 	public void setupEntities(){
 		
-		var screenText = new TextEntity(new Coordinate2D(getWidth() / 2, getHeight() / 10 * 4), "You Win!");
+		String screenTextText = "You Died!";
+		
+		if (slimeGame.getHasWon()) {
+			screenTextText = "You Won!";
+		}
+		
+		var screenText = new TextEntity(new Coordinate2D(getWidth() / 2, getHeight() / 10 * 4), screenTextText);
 		screenText.setFill(Color.YELLOW);
 		screenText.setFont(Font.font("Lucida Calligraphy", FontWeight.BOLD, 45));
 		screenText.setAnchorPoint(AnchorPoint.CENTER_CENTER);
 		addEntity(screenText);
-	    
+	    				
 		addEntity(new ReplayButton(new Coordinate2D(getWidth() / 2, getHeight() / 10 * 6), slimeGame));
 		addEntity(new QuitButton(new Coordinate2D(getWidth() / 2, getHeight() / 10 * 7), slimeGame));
 	    

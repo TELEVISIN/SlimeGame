@@ -50,7 +50,8 @@ public abstract class Enemy extends iLifeform {
 			//if health hits or drops below zero, kill
 			if (health <= 0) {
 				if (this instanceof SlimeKing) {
-					slimeGame.setActiveScene(3);
+					slimeGame.setHasWon(true);
+					slimeGame.setActiveScene(2);
 				} else {
 					parentRoom.updateEnemiesKilled();
 					isAlive = false;
