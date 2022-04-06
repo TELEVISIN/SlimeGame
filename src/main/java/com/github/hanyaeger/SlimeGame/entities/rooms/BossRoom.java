@@ -1,11 +1,6 @@
 package com.github.hanyaeger.SlimeGame.entities.rooms;
 
-import com.github.hanyaeger.SlimeGame.entities.obstacles.Crate;
-import com.github.hanyaeger.SlimeGame.entities.obstacles.Door;
-import com.github.hanyaeger.SlimeGame.entities.obstacles.Floor;
-import com.github.hanyaeger.SlimeGame.entities.obstacles.Wall;
 import com.github.hanyaeger.SlimeGame.scenes.GameLevel;
-
 import java.util.Random;
 
 public class BossRoom extends Room{
@@ -14,7 +9,10 @@ public class BossRoom extends Room{
 
     Random random = new Random();
 
-
+    /**
+     * Constructor of BossRoom. Creates object of a boss room
+     * @param gameLevel
+     */
     public BossRoom(GameLevel gameLevel)
     {
         super(gameLevel);
@@ -24,14 +22,23 @@ public class BossRoom extends Room{
         enemiesKilled = 0;
     }
 
-
+    /**
+     * Defines the tilmap for the boss room
+     * @return
+     */
     @Override
     public int[][] defineMap()
     {
         return editTileMap(createTileMap());
     }
 
+
     //edit tilemap by adding walls and crates
+    /**
+     * Edits the tilemap by adding walls and crates
+     * @param oldTilemap
+     * @return  Returns new edited tilemap.
+     */
     private int[][] editTileMap(int[][] oldTilemap) {
         int[][] newTilemap = oldTilemap;
 

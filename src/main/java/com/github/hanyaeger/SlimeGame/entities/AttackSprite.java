@@ -1,12 +1,8 @@
 package com.github.hanyaeger.SlimeGame.entities;
 
-import java.time.Instant;
-import java.util.Set;
-
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.UpdateExposer;
-import com.github.hanyaeger.api.entities.Collided;
 import com.github.hanyaeger.api.entities.Collider;
 import com.github.hanyaeger.api.entities.impl.DynamicSpriteEntity;
 import com.github.hanyaeger.api.userinput.MouseButtonPressedListener;
@@ -18,7 +14,11 @@ public class AttackSprite extends DynamicSpriteEntity implements MouseButtonPres
 	private long createdTimestamp;
 	private long attackTimer = 100000000;
 	public int attackPower = 1;
-	
+
+	/**
+	 * Constructor of attackSprite. Creates object of an attack sprite
+	 * @param initialLocation
+	 */
 	public AttackSprite(Coordinate2D initialLocation) {
 		super("sprites/LifeformSpriteSheet.png", initialLocation, new Size(128, 128), 8, 8);
 		switch(PaladinSprite.direction) {
@@ -39,16 +39,21 @@ public class AttackSprite extends DynamicSpriteEntity implements MouseButtonPres
 	    }
 	}
 
+	/**
+	 * Handles mouse button press events
+	 * @param button
+	 * @param coordinate2d
+	 */
 	@Override
 	public void onMouseButtonPressed(MouseButton button, Coordinate2D coordinate2d) {
-		// TODO Auto-generated method stub
-		
 	}
-	
 
+	/**
+	 * Handles the explicit updates of the attack sprite.
+	 * @param timestamp
+	 */
 	@Override
 	public void explicitUpdate(long timestamp) {
-		// TODO Auto-generated method stub
 		if(createdTimestamp == 0) {
 			createdTimestamp = timestamp;
 		}

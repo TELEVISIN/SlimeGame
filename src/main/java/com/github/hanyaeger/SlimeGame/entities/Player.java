@@ -6,28 +6,17 @@ import com.github.hanyaeger.SlimeGame.SlimeGame;
 import com.github.hanyaeger.SlimeGame.entities.obstacles.Crate;
 import com.github.hanyaeger.SlimeGame.entities.obstacles.Door;
 import com.github.hanyaeger.SlimeGame.entities.obstacles.Wall;
-import com.github.hanyaeger.SlimeGame.entities.rooms.NormalRoom;
 import com.github.hanyaeger.SlimeGame.entities.rooms.Room;
-import com.github.hanyaeger.SlimeGame.scenes.GameLevel;
 import com.github.hanyaeger.api.Coordinate2D;
-import com.github.hanyaeger.api.entities.Collided;
 import com.github.hanyaeger.api.entities.Collider;
 import com.github.hanyaeger.api.userinput.KeyListener;
 
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.MouseButton;
 
-/*
- * 
- * @Author: Jasper
- * 
- */
 
 public abstract class Player extends iLifeform implements KeyListener {
 	final static int BASE_HEALTH = 100;
 	final double BASE_SPEED = 5;
-	final double BASE_ATTACK_SPEED = 0.7;
-	final double BASE_ATTACK_POWER = 10;
 	final int CORNER_CLIP_BUFFER = 1;
 
 	double hitboxMultiplier = 0.8;
@@ -36,31 +25,36 @@ public abstract class Player extends iLifeform implements KeyListener {
 	
 	private int health;
 	double speed = BASE_SPEED;
-	double attackPower = BASE_ATTACK_POWER;
-	double attackSpeed = BASE_ATTACK_SPEED;
 
 	boolean leftKey;
 	boolean upKey;
 	boolean rightKey;
 	boolean downKey;
-	
-	int experience;
-	int level;
+
 	SlimeGame slimeGame;
 	Room parentRoom;
 	HealthText healthText;
-	
+
+	/**
+	 * Constructor of Player. Creates an object of a player.
+	 * @param coordinate2d
+	 * @param slimeGame
+	 * @param healthText
+	 * @param parentRoom
+	 */
 	public Player(Coordinate2D coordinate2d, SlimeGame slimeGame, HealthText healthText, Room parentRoom) {
 		super(coordinate2d);
 		this.slimeGame = slimeGame;
 		this.healthText = healthText;
 		this.parentRoom = parentRoom;
 
-		
 		setHealth(BASE_HEALTH);
 	}
 
-
+	/**
+	 * Handles the pressed key change events
+	 * @param pressedKeys
+	 */
 	@Override
 	public void onPressedKeysChange(Set<KeyCode> pressedKeys) {
 		leftKey = pressedKeys.contains(KeyCode.LEFT) || pressedKeys.contains(KeyCode.A);
@@ -74,12 +68,20 @@ public abstract class Player extends iLifeform implements KeyListener {
 			changeHealth(-5);
 		}
 	}
-	
+
+	/**
+	 * Sets the health of the player
+	 * @param health
+	 */
 	public void setHealth(int health) {
 		this.health = health;
 		updateHealthText();
 	}
-	
+
+	/**
+	 * Changes the Health of the player
+	 * @param healthLoss
+	 */
 	private void changeHealth(int healthLoss) {
 		health += healthLoss;
 		
@@ -89,11 +91,18 @@ public abstract class Player extends iLifeform implements KeyListener {
 		
 		updateHealthText();
 	}
-	
+
+	/**
+	 * Updates the health of the player
+	 */
 	private void updateHealthText() {
 		healthText.setHealthText(health);
 	}
 
+	/**
+	 * Handles the collision of the player
+	 * @param collidingObject
+	 */
 	public void onCollision(Collider collidingObject) {
 		//if colliding with door, open it on button press
 		if (collidingObject instanceof Door) {
@@ -116,6 +125,10 @@ public abstract class Player extends iLifeform implements KeyListener {
 		}
 	}
 
+	/**
+	 * Checks for collision with the walls and enables, disables movement based on said collision
+	 * @param collidingObject
+	 */
 	public void checkWallCollision(Collider collidingObject) {
 
 		double wallX;
@@ -328,14 +341,19 @@ public abstract class Player extends iLifeform implements KeyListener {
 	}
 
 
-	public void Attack() {
-		
-	}
-	
-	public void Block() {
-		
-	}
+	/**
+	 * Signals an attack in the console.
+	 */
+	public void Attack() {}
 
+	/**
+	 * Signals an block in the console.
+	 */
+	public void Block() {}
+
+	/**
+	 * Handles movement for the player
+	 */
 	public void Move()
 	{
 		//diagonal movement

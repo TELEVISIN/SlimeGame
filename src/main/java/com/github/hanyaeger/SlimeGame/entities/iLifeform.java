@@ -1,6 +1,4 @@
-/**
- * 
- */
+
 package com.github.hanyaeger.SlimeGame.entities;
 
 import com.github.hanyaeger.SlimeGame.SlimeGame;
@@ -9,47 +7,36 @@ import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.entities.Collider;
 import com.github.hanyaeger.api.entities.DynamicCompositeEntity;
 
-/**
- * @author jasper
- *
- */
-public abstract class iLifeform extends DynamicCompositeEntity {
-	//base lifeform stats, modified by class or enemy type
-	final int BASE_HEALTH = 100;
-	final double BASE_SPEED = 1.5; //0.7 tiles per second?
-	final double BASE_ATTACK_POWER = 10;
-	final double BASE_ATTACK_SPEED = 0.7;
 
+public abstract class iLifeform extends DynamicCompositeEntity {
 	boolean canMoveUp = true;
 	boolean canMoveDown = true;
 	boolean canMoveLeft = true;
 	boolean canMoveRight = true;
-	
-	int health;
-	float speed;
-	float attackPower;
-	float attackSpeed;
-	SlimeGame slimegame;
+
 	GameLevel gameLevel;
-	
+
+	/**
+	 * Constructor of iLifeform. Creates an object of iLifeform
+	 * @param initialLocation
+	 */
 	public iLifeform(Coordinate2D initialLocation) {
 		super(initialLocation);
-		// TODO Auto-generated constructor stub
 	}
-	
-	public void onCollision(Collider collidingObject) {
-		
-	}
-	
-	public void Move() {
-		
-	}
-	
-	public void Attack() {
-		
-	}
-	
-	public void UpdateHealth() {
-		
-	}
+
+	/**
+	 * Handles the collision with a lifeform.
+	 * @param collidingObject
+	 */
+	public void onCollision(Collider collidingObject) {}
+
+	/**
+	 * Takes care of the lifeform movement
+	 */
+	public void Move() {}
+
+	/**
+	 * Takes care of the attacking of the lifeform
+	 */
+	public void Attack() {}
 }

@@ -28,21 +28,25 @@ public class Button extends TextEntity implements MouseButtonPressedListener,Mou
 	}
 
 	/**
-	 *
+	 * Handles the mouse button pressed events
 	 * @param button
 	 * @param coordinate2d
 	 */
 	@Override
 	public void onMouseButtonPressed(MouseButton button, Coordinate2D coordinate2d) {
-		// TODO Auto-generated method stub
-		
 	}
 
+	/**
+	 * Handles the mouse exit event
+	 */
 	@Override
 	public void onMouseExited() {
 	    setCursor(Cursor.DEFAULT);
 	}
 
+	/**
+	 * Handles the mouse enter event
+	 */
 	@Override
 	public void onMouseEntered() {
 	    setCursor(Cursor.HAND);

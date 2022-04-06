@@ -18,7 +18,10 @@ public class NormalRoom extends Room{
     int crateChanceMaximum = 1;
     int crateChance;
 
-
+    /**
+     * Constructor of NormalRoom. Creates object of a normal room
+     * @param gameLevel
+     */
     public NormalRoom(GameLevel gameLevel)
     {
         super(gameLevel);
@@ -28,7 +31,10 @@ public class NormalRoom extends Room{
         enemiesKilled = 0;
     }
 
-
+    /**
+     * Defines the tilemap for the normal room
+     * @return
+     */
     @Override
     public int[][] defineMap()
     {
@@ -36,6 +42,11 @@ public class NormalRoom extends Room{
     }
 
     //edit tilemap by adding walls and crates
+    /**
+     * Edits the tilemap by adding walls and crates
+     * @param oldTilemap
+     * @return Returns new edited tilemap
+     */
     private int[][] editTileMap(int[][] oldTilemap) {
         int[][] newTilemap = oldTilemap;
 
@@ -62,6 +73,13 @@ public class NormalRoom extends Room{
         return newTilemap;
     }
 
+    /**
+     * Adds an obstacle to the tilemap
+     * @param oldTilemap
+     * @param columnNr
+     * @param rowNr
+     * @return Returns the old tilemap with the added obstacle
+     */
     private int[][] addObstacle(int[][] oldTilemap, int columnNr, int rowNr)
     {
         int[][] newTilemap = oldTilemap;

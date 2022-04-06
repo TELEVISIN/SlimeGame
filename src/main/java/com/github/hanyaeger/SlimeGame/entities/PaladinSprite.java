@@ -11,15 +11,23 @@ import javafx.scene.input.KeyCode;
 
 public class PaladinSprite extends DynamicSpriteEntity implements KeyListener {
 
-	
 	public static int direction = 2; // 0 = up, 1 = right, 2 = down, 3 = left
-	
+
+	/**
+	 * Constructor of PaladinSprite. Creates an object of a palading sprite.
+	 * @param initialLocation
+	 * @param size
+	 */
 	public PaladinSprite(Coordinate2D initialLocation, Size size) {
 		super("sprites/LifeformSpriteSheet.png", initialLocation, size, 8, 8);
         setCurrentFrameIndex(32);
 	}
 
-	//handle paladin movement
+	//handle spriet direction chance
+	/**
+	 * Handles the direction change of the paladin sprite
+	 * @param pressedKeys
+	 */
 	@Override
 	public void onPressedKeysChange(Set<KeyCode> pressedKeys) {
 		if(pressedKeys.contains(KeyCode.LEFT) || pressedKeys.contains(KeyCode.A)) {

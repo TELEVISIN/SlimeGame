@@ -2,46 +2,43 @@ package com.github.hanyaeger.SlimeGame.entities;
 
 import com.github.hanyaeger.SlimeGame.SlimeGame;
 import com.github.hanyaeger.SlimeGame.entities.rooms.Room;
-import com.github.hanyaeger.SlimeGame.scenes.GameLevel;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.entities.Collider;
 
 public abstract class Enemy extends iLifeform {
-	public Enemy(Coordinate2D coordinate2d, SlimeGame slimeGame) {
-		super(coordinate2d);
-		this.slimeGame = slimeGame;
-		// TODO Auto-generated constructor stub
-	}
-	final int BASE_HEALTH = 100;
-	final double BASE_SPEED = 5;
-	final double BASE_ATTACK_SPEED = 0.7;
-	final double BASE_ATTACK_POWER = 10;
-	
 	int health;
-	double speed = BASE_SPEED;
-	double attackPower = BASE_ATTACK_POWER;
-	double attackSpeed = BASE_ATTACK_SPEED;
-
 	boolean isAlive = true;
+
 	Room parentRoom;
 
 	SlimeGame slimeGame;
-	GameLevel gameLevel;
-	
+
+	/**
+	 * Constructor of Enemy. Creates object of enemy.
+	 * @param coordinate2d
+	 * @param slimeGame
+	 */
+	public Enemy(Coordinate2D coordinate2d, SlimeGame slimeGame) {
+		super(coordinate2d);
+		this.slimeGame = slimeGame;
+	}
+
+	/**
+	 * Handles Collision with the Enemy
+	 * @param collidingObject
+	 */
 	public void onCollision(Collider collidingObject) {
 		//if collide with attack, take damage
 		if (collidingObject instanceof AttackSprite)
 		{
 			TakeDamage((AttackSprite) collidingObject);
 		}
-
-		//if colliding with player
-		if (collidingObject instanceof Player)
-		{
-			System.out.println("Oh no!!! Scawy Pawadin be touching meeee ONO!");
-		}
 	}
 
+	/**
+	 * Lowers health when still alive.
+	 * @param attackSprite
+	 */
 	public void TakeDamage(AttackSprite attackSprite)
 	{
 		//if still alive
@@ -64,10 +61,7 @@ public abstract class Enemy extends iLifeform {
 		}
 	}
 	
-	public void Attack() {
-		
-	}
+	public void Attack() {}
 	
-	public void Move() {
-	}
+	public void Move() {}
 }

@@ -12,13 +12,21 @@ public class Crate extends SpriteEntity implements Collider, Collided {
     final int CRATE_DESTROYED_SPRITE_INDEX = 10;
     public boolean isDestroyed = false;
 
+    /**
+     * Constructor of crate. Creates object of crate
+     * @param initialLocation
+     * @param size
+     */
     public Crate(Coordinate2D initialLocation, Size size) {
         super("sprites/Room_tilemap_V2.png", initialLocation, size, 12, 4);
 
         setCurrentFrameIndex(CRATE_SPRITE_INDEX);
     }
 
-
+    /**
+     * Handles collisions with the crate
+     * @param collider
+     */
     @Override
     public void onCollision(Collider collider) {
         if (collider instanceof AttackSprite && !isDestroyed)
@@ -28,6 +36,9 @@ public class Crate extends SpriteEntity implements Collider, Collided {
         }
     }
 
+    /**
+     * Sets the crate to its destroyed state
+     */
     private void Destroy()
     {
         isDestroyed = true;

@@ -9,7 +9,6 @@ import com.github.hanyaeger.SlimeGame.scenes.GameLevel;
 import com.github.hanyaeger.api.entities.YaegerEntity;
 import com.github.hanyaeger.api.scenes.TileMap;
 
-import java.util.List;
 import java.util.Random;
 
 public abstract class Room extends TileMap {
@@ -69,7 +68,10 @@ public abstract class Room extends TileMap {
             Floor.class
     };
 
-
+    /**
+     * Constructor of Room. Creates object of a room
+     * @param gameLevel
+     */
     public Room(GameLevel gameLevel)
     {
         this.gameLevel = gameLevel;
@@ -79,6 +81,9 @@ public abstract class Room extends TileMap {
         wallAmountY = SlimeGame.roomTileRows;
     }
 
+    /**
+     * Sets up the entities that can be used to fill the tilemap
+     */
     public void setupEntities()
     {
         //setup all the entities for the standard room tilemap
@@ -118,6 +123,10 @@ public abstract class Room extends TileMap {
 
     }
 
+    /**
+     * Create the base of the tilemap
+     * @return Returns a tilemap blueprint
+     */
     //create the base for the TileMap
     protected int[][] createTileMap()
     {
@@ -245,6 +254,11 @@ public abstract class Room extends TileMap {
         return tilemap;
     }
 
+    /**
+     * Prints the instances of the tilemap
+     * Can only be used after the tilemap has been created.
+     * For testing purposes only
+     */
     public void printInstanceMap()
     {
         YaegerEntity[][] instanceMap = getInstanceMap();
@@ -263,6 +277,10 @@ public abstract class Room extends TileMap {
         }
     }
 
+    /**
+     * Prints the blueprint of the tilemap
+     * For testing purposes only
+     */
     public void printTileMap(int[][] tilemap) {
         YaegerEntity[][] instanceMap = getInstanceMap();
 
@@ -278,6 +296,9 @@ public abstract class Room extends TileMap {
         }
     }
 
+    /**
+     * Updates the amount of enemies killed.
+     */
     public void updateEnemiesKilled()
     {
         enemiesKilled++;
@@ -289,11 +310,11 @@ public abstract class Room extends TileMap {
         }
     }
 
+    /**
+     * Enables the palayer to pass through the doors.
+     */
     private void openDoors()
     {
         doorsOpen = true;
     }
-
-
-    private void spawnEnemies() {}
 }

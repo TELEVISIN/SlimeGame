@@ -14,11 +14,18 @@ public class SlimeGame extends YaegerGame{
 	public static int roomTileColumns = 19; // default 19
 	public static int roomTileRows = 11; // default 11
 	public static int spriteScale = 2; // default 2
-	
+
+	/**
+	 * The main function of the game. Called on startup to launch the game.
+	 * @param args
+	 */
 	public static void main(String[] args){
 	    launch(args);
 	}
 
+	/**
+	 * Setup method for the game.
+	 */
 	@Override
 	public void setupGame() {
 	    setGameTitle("Tomb Of The Slime King");
@@ -28,6 +35,9 @@ public class SlimeGame extends YaegerGame{
 	    setSize(new Size(SlimeGameWidth, SlimeGameHeight));
 	}
 
+	/**
+	 * Sets up the scenes by declaring each one with the "addScene" method
+	 */
 	@Override
 	public void setupScenes(){
 	    addScene(0, new StartScreen(this));
