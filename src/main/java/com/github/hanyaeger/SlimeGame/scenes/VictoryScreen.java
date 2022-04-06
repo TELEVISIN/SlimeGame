@@ -23,7 +23,7 @@ public class VictoryScreen extends StaticScene {
 
 	@Override
 	public void setupScene() {
-	    setBackgroundImage("sprites/swordfish.png");
+	    setBackgroundImage("backgrounds/VictoryScreen.png");
 	}
 
 	@Override
