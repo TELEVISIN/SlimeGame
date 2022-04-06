@@ -6,7 +6,6 @@ import com.github.hanyaeger.SlimeGame.entities.AttackTimer;
 import com.github.hanyaeger.SlimeGame.entities.HealthText;
 import com.github.hanyaeger.SlimeGame.entities.Paladin;
 import com.github.hanyaeger.SlimeGame.entities.PaladinSprite;
-import com.github.hanyaeger.SlimeGame.entities.Player;
 import com.github.hanyaeger.SlimeGame.entities.SlimeKing;
 import com.github.hanyaeger.SlimeGame.entities.SmallSlime;
 import com.github.hanyaeger.SlimeGame.entities.rooms.BossRoom;
@@ -47,11 +46,18 @@ public class GameLevel extends DynamicScene implements TileMapContainer, MouseBu
     private Timer timer;
 
     public Room room;
-    
-    public GameLevel(SlimeGame slimeGame) {
+
+	/**
+	 * Constructor of GameLevel. Creates an object of the game level.
+	 * @param slimeGame
+	 */
+	public GameLevel(SlimeGame slimeGame) {
         this.slimeGame = slimeGame;
     }
 
+	/**
+	 * Setup method for the scene
+	 */
 	@Override
 	public void setupScene() {
 		slimeGame.setHasWon(false);
@@ -63,6 +69,9 @@ public class GameLevel extends DynamicScene implements TileMapContainer, MouseBu
 		generateRoom();
 	}
 
+	/**
+	 * Sets up the entities for the scene
+	 */
     @Override
     public void setupEntities() {
 		var healthText = new HealthText(
@@ -91,14 +100,19 @@ public class GameLevel extends DynamicScene implements TileMapContainer, MouseBu
 		}
     }
 
+	/**
+	 * Adds the slime king to the scene.
+	 */
 	private void addSlimeKing()
 	{
 		//spawn slime king
 		slimeKing = new SlimeKing(new Coordinate2D(512, 128), slimeGame, room);
 		addEntity(slimeKing);
-		System.out.println("KING SLIME APPROACHES");
 	}
 
+	/**
+	 * Checks if it's time for the boss.
+	 */
 	private void checkBossTime()
 	{
 		//check if it is time for the boss
@@ -111,11 +125,14 @@ public class GameLevel extends DynamicScene implements TileMapContainer, MouseBu
 			System.out.println("KING SLIME APPROACHES");
 		}
 	}
-    
+
+	/**
+	 * Handles mouse pressed events of the gamelevel.
+	 * @param button
+	 * @param coordinate2d
+	 */
     @Override
     public void onMouseButtonPressed(MouseButton button, Coordinate2D coordinate2d) {
-        // TODO Auto-generated method stub
-        
         //LEFT MOUSE BUTTON for attacking
         if(button == MouseButton.PRIMARY) {
             //execute the attack
@@ -150,12 +167,18 @@ public class GameLevel extends DynamicScene implements TileMapContainer, MouseBu
 
 
     //handle map
+	/**
+	 * Sets up the tilemaps used by this room
+	 */
     @Override
     public void setupTileMaps() {
         addTileMap(room);
     }
 
-    //generate a new roomq
+    //generate a new room
+	/**
+	 * Generates a new room
+	 */
     public void generateRoom()
     {
 		if (!bossTime) {
@@ -169,12 +192,20 @@ public class GameLevel extends DynamicScene implements TileMapContainer, MouseBu
     }
 
 	//set a new room for the level
+
+	/**
+	 * Sets the scene again to update the room
+	 */
 	public void setNewRoom()
 	{
 		//clear the level and run setup entities again
 		slimeGame.setActiveScene(1);
 	}
 
+	/**
+	 * Handles key pressed events for gamelevel
+	 * @param pressedKeys
+	 */
     @Override
     public void onPressedKeysChange(Set<KeyCode> pressedKeys) {
         boolean escapePressed = pressedKeys.contains(KeyCode.ESCAPE);
@@ -186,18 +217,21 @@ public class GameLevel extends DynamicScene implements TileMapContainer, MouseBu
         }
     }
 
+	/**
+	 * Sets up the timers used by the game level
+	 */
 	@Override
 	public void setupTimers() {
-		// TODO Auto-generated method stub
-		
 		//timer in ms
 		timer = new AttackTimer(1000);
 		addTimer(timer);
 	}
 
+	/**
+	 * Sets up the entity Spawners used by the game level
+	 */
 	@Override
 	public void setupEntitySpawners() {
-		// TODO Auto-generated method stub
 		addEntitySpawner(new SlimeSpawner(getWidth(), getHeight(), room));
 	}
 }
