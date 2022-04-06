@@ -29,7 +29,7 @@ public class DeathScreen extends StaticScene {
 	@Override
 	public void setupEntities(){
 		
-		var screenText = new TextEntity(new Coordinate2D(getWidth() / 2, getHeight() / 10 * 4), "You Dieded!");
+		var screenText = new TextEntity(new Coordinate2D(getWidth() / 2, getHeight() / 10 * 4), "You Died!");
 		screenText.setFill(Color.YELLOW);
 		screenText.setFont(Font.font("Lucida Calligraphy", FontWeight.BOLD, 45));
 		screenText.setAnchorPoint(AnchorPoint.CENTER_CENTER);
